@@ -1,0 +1,11 @@
+#evolution snow
+parameters:
+    upload_destination: '%kernel.root_dir%/../web/uploads/media'
+    nom_societe: '0845 - MS Reunion'
+    macro_processus: 'P2P'
+    processus: 'AP1 - AP - Invoice Processing'
+    sous_processus: 'AP13 - AP Goods&Services'
+    sous_sous_processus: 'AP131 - Invoice Reception / Scan'
+    nom_generique_expediteur: 'tamara'
+    igg: 'LARE001'
+    dest_snow: 'totalsscdv@service-now.com'

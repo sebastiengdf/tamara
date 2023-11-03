@@ -1,0 +1,22 @@
+{% extends 'SonataAdminBundle:CRUD:base_show_field.html.twig' %}
+
+{% block field %}
+	{% if not object.commentaires.empty %}
+		<div class="col-xs-12">
+		<div class="box">
+			<!-- /.box-header -->
+			<div class="box-body table-responsive no-padding">
+				<table class="table table-hover">
+					<tbody>
+						<tr><th>Utilisateur</th><th>Date</th><th>Commentaire</th></tr>				
+						{% for releve in object.commentaires %}
+							<tr><td>{{ releve.user }}</td><td>{{ releve.created|date('d/m/Y')  }}</td><td>{{ releve.content|raw }}</td></tr>
+						{% endfor %}
+					</tbody>
+				  </table>
+            </div>
+            <!-- /.box-body -->
+		</div>
+		</div>
+    {% endif %} 
+{% endblock %}

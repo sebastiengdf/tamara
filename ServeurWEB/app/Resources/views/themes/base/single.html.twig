@@ -1,0 +1,31 @@
+{% extends '@Cms/Cms/front'~ajax~'.html.twig' %}
+
+{% block content %}
+    {% block content_title %}
+        <h1>{{ object.h1 }}</h1> {#H1#}
+    {% endblock content_title %}
+    <hr>
+    <div class="meta">
+        {% block content_meta %}
+            <span class="social-share">{% include rootPath ~ '/partials-single:social_share.html.twig' %}</span>&nbsp;
+            <span class="publish-date">{% include rootPath ~ '/partials-single:publish_date.html.twig' %}</span>&nbsp;
+            <span class="author">{% include rootPath ~ '/partials-single:author.html.twig' %}</span>
+        {% endblock content_meta %}
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-md-9 main">
+            {% block content_main %}
+                {% include rootPath ~ '/partials-single:cover.html.twig' %}
+                <p><strong>{{ object.excerpt }}</strong></p> {#Excerpt#}
+                {{ include(template_from_string(object.content)) }} {#Content#}
+                {% include rootPath ~ '/partials-single:fields.html.twig' %}
+                {% include rootPath ~ '/partials-single:pictures.html.twig' %}
+                {% include rootPath ~ '/partials-single:videos.html.twig' %}
+            {% endblock content_main %}
+        </div>
+        <div class="col-md-3 sidebar">
+            {% block content_sidebar %}{% include rootPath ~ ':sidebar-blog.hml.twig' %}{% endblock content_sidebar %}
+        </div>
+    </div>
+{% endblock content %}

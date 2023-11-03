@@ -1,0 +1,8 @@
+services:
+
+    cms.folder_slug:
+        class: CmsBundle\Util\FolderSlug
+
+    cms.template.hierarchy:
+        class: CmsBundle\Util\TemplateHierarchy
+        arguments: ["@cms.getConfigCms"]

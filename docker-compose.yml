@@ -1,0 +1,45 @@
+version: "3.7"
+services:
+  tamara:
+    build: .
+    container_name: "tamara"
+    image: tamara:latest
+    restart: unless-stopped
+    tty: true
+    hostname: tamara
+    environment:
+      TZ: "Indian/Reunion"
+    ports:
+      - 10670:80
+    privileged: true
+    links:
+      - bddtamara
+    networks:
+      - default
+    volumes:
+            - type: bind
+              source: C:/Users/sebastien.girier/Projets/tamara/files
+              target: /home/tamara/web/uploads/media
+
+  bddtamara:
+    image: ghcr.io/sebastiengdf/mysql:latest
+    container_name: "bddtamara"
+    restart: unless-stopped
+    tty: true
+    hostname: bddtamara
+    environment:
+      TZ: "Indian/Reunion"
+      MYSQL_ROOT_PASSWORD: Boss132
+      MYSQL_DATABASE: 'totalinvoicedbtest2'
+      MYSQL_TCP_PORT: 3307
+    privileged: true
+    networks:
+      - default
+    volumes:
+            - type: bind
+              source: C:/Users/sebastien.girier/Projets/tamara/data
+              target: /var/lib/mysql
+            - type: bind
+              source: C:/Users/sebastien.girier/Projets/tamara/sql
+              target: /sql
+              

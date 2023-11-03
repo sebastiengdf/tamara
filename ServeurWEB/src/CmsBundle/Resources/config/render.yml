@@ -1,0 +1,21 @@
+services:
+
+    cms.render.page:
+        class: CmsBundle\Render\PageRender
+        calls:
+            - ['setContainer', ['@service_container']]
+
+    cms.render.post:
+        class: CmsBundle\Render\PostRender
+        calls:
+            - ['setContainer', ['@service_container']]
+
+    cms.render.list:
+        class: CmsBundle\Render\ListRender
+        calls:
+            - ['setContainer', ['@service_container']]
+
+    cms.render.taxo:
+        class: CmsBundle\Render\TaxonomyRender
+        calls:
+            - ['setContainer', ['@service_container']]

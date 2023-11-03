@@ -1,0 +1,49 @@
+{% extends 'SonataAdminBundle:CRUD:edit.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+    span[id="field_widget_{{ admin.uniqId }}_routeArgs"] table th:nth-child(3):before,
+    span[id="field_widget_{{ admin.uniqId }}_linkParams"] table th:nth-child(3):before
+        {
+            font: normal normal normal 14px/1 FontAwesome;
+            content: "\f0ac";
+            color: #D6261E;
+        }
+    </style>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script>
+        function linkTypeState() {
+            $('div[class|="link"]').hide();
+            var selectLinkType = $('select[id$="linkType"]').val();
+            console.log(selectLinkType)
+            if (selectLinkType == 'PAGE') {
+                $('.link-page').show();
+            }
+            if (selectLinkType == 'LINK') {
+                $('.link-url').show();
+            }
+            if (selectLinkType == 'ROUTE') {
+                $('.link-route').show();
+            }
+            if (selectLinkType == 'ARTICLE') {
+                $('.link-article').show();
+            }
+            if (selectLinkType == 'CATEGORY') {
+                $('.link-category').show();
+            }
+        }
+
+        $(function () {
+            linkTypeState();
+            $('div[id$="linkType"]').on('change', function () {
+                linkTypeState();
+            })
+        });
+    </script>
+
+{% endblock %}

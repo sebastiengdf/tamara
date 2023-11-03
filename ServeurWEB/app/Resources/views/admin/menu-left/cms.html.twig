@@ -1,0 +1,52 @@
+<li class="treeview">
+    <a href="#">
+        <i class="fa fa-wordpress" aria-hidden="true">&nbsp;</i> <span>CMS</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+    </a>
+    <ul class="treeview-menu menu-open" style="">
+        <li>
+            <a href="#"><i class="fa fa-file-text-o"></i>Pages<span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a>
+            <ul class="treeview-menu" style="">
+                {% if granted('cms', 'page', 'list') %}<li><a href="{{ path('admin_cms_page_list') }}?tl={{ locale }}">Toutes les pages</a></li>{% endif %}
+                {% if granted('cms', 'page', 'create') %}<li><a href="{{ path('admin_cms_page_create') }}?tl={{ locale }}">Ajouter</a></li>{% endif %}
+                {% if granted('cms', 'folder', 'list') %}<li><a href="{{ path('admin_cms_folder_list') }}?tl={{ locale }}">Dossier</a></li>{% endif %}
+            </ul>
+        </li>
+        <li>
+            <a href="#"><i class="fa fa-sitemap"></i>Menu<span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a>
+            <ul class="treeview-menu" style="">
+                {% if granted('cms', 'menu', 'edit') %}<li><a href="{{ path('admin_cms_menu_edit', {'id': 1}) }}">Menu principal</a></li>{% endif %}
+                {% if granted('cms', 'menu', 'list') %}<li><a href="{{ path('admin_cms_menu_list') }}">Menu</a></li>{% endif %}
+                {% if granted('cms', 'link', 'list') %}<li><a href="{{ path('admin_cms_link_list') }}?tl={{ locale }}">Lien</a></li>{% endif %}
+                {% if granted('cms', 'menuType', 'list') %}<li><a href="{{ path('admin_cms_menutype_list') }}">Menu Type</a></li>{% endif %}
+            </ul>
+        </li>
+        <li>
+            <a href="#"><i class="fa fa-th"></i>Bloc / Collection<span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a>
+            <ul class="treeview-menu" style="">
+                {% if granted('cms', 'bloc', 'list') %}<li><a href="{{ path('admin_cms_bloc_list') }}?tl={{ locale }}">Blocs</a></li>{% endif %}
+                {% if granted('cms', 'collection', 'list') %}<li><a href="{{ path('admin_cms_collection_list') }}?tl={{ locale }}">Collections</a></li>{% endif %}
+            </ul>
+        </li>
+        <li>
+            <a href="#"><i class="fa fa-file-o"></i>Articles<span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a>
+            <ul class="treeview-menu" style="">
+                {% if granted('cms', 'article', 'list') %}<li><a href="{{ path('admin_cms_article_list') }}?tl={{ locale }}">Tous les articles</a></li>{% endif %}
+                {% if granted('cms', 'article', 'create') %}<li><a href="{{ path('admin_cms_article_create') }}?tl={{ locale }}">Ajouter</a></li>{% endif %}
+                {% if granted('cms', 'category', 'list') %}<li><a href="{{ path('admin_cms_category_list') }}?tl={{ locale }}">Catégories</a></li>{% endif %}
+                {% if granted('cms', 'tag', 'list') %}<li><a href="{{ path('admin_cms_tag_list') }}?tl={{ locale }}">Tags</a></li>{% endif %}
+            </ul>
+        </li>
+        <li>
+            <a href="#"><span class="glyphicon glyphicon-wrench">&nbsp;</span>Configuration CMS<span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a>
+            <ul class="treeview-menu" style="">
+                {% if granted('cms', 'listseo', 'list') %}<li><a href="{{ path('admin_cms_listseo_list') }}?tl={{ locale }}">Reglages des listes</a></li>{% endif %}
+                {% if granted('cms', 'layout', 'list') %}<li><a href="{{ path('admin_cms_layout_list') }}">Modèle</a></li>{% endif %}
+                {% if granted('cms', 'config', 'list') %}<li><a href="{{ path('admin_cms_config_list') }}?tl={{ locale }}">Param&egrave;tres</a></li>{% endif %}
+            </ul>
+        </li>
+    </ul>
+</li>
+<li><a href="{{ path('homepage') }}" target="_blank"><i class="fa fa-eye"></i> Voir le site</a></li>

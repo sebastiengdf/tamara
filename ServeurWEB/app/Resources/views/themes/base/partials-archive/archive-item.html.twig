@@ -1,0 +1,10 @@
+{% if object.published  %}
+    <a href="{{ path('cms_post_show', {'_locale': app.request.locale, 'type': object.type, 'slug': object.slug}) }}">
+        <article class="item thumbnail" id="{{ object.type }}-{{ object.id }}">
+            {% include rootPath ~ '/partials-single:cover.html.twig' %}
+            <h3>{{ object.h1 }}</h3>
+            <p>{{ object.excerpt }}</p>
+        </article>
+    </a>
+{% endif %}
+

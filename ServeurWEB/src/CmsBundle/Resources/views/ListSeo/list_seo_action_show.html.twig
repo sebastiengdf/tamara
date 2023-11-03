@@ -1,0 +1,5 @@
+{% if object.translation('slug', app.request.query.get('tl')) %}
+<a target="_blank" href="{{ path('cms_list_show', {'_locale': app.request.query.get('tl'), 'type': object.slug}) }}" class="btn btn-sm btn-primary" title="Voir">
+    <i class="fa fa-eye" aria-hidden="true"></i>
+</a>
+{% endif %}

@@ -1,0 +1,59 @@
+services:
+    cms.listener.page:
+        class: CmsBundle\Listener\Doctrine\PageDoctrineListener
+        arguments:
+            - "@service_container"
+        tags:
+          - { name: doctrine.event_listener, event: postPersist }
+          - { name: doctrine.event_listener, event: postUpdate }
+
+    cms.seo.page:
+        class: CmsBundle\Listener\Doctrine\SeoDoctrineListener
+        arguments:
+            - "@service_container"
+        tags:
+          - { name: doctrine.event_listener, event: postPersist }
+          - { name: doctrine.event_listener, event: postUpdate }
+
+
+    cms.nav.AutoCreateRootLink:
+        class: CmsBundle\Listener\Doctrine\AutoCreateRootLink
+        arguments: ['@service_container']
+        tags:
+            - { name: doctrine.event_listener, event: postPersist }
+
+    cms.post.subscriber:
+        class: CmsBundle\EventSubscriber\PostSubscriber
+        arguments: ['@service_container']
+        tags:
+            - { name: kernel.event_subscriber}
+
+    cms.page.subscriber:
+        class: CmsBundle\EventSubscriber\PageSubscriber
+        arguments: ['@service_container']
+        tags:
+            - { name: kernel.event_subscriber}
+
+    cms.taxo.subscriber:
+        class: CmsBundle\EventSubscriber\TaxoSubscriber
+        arguments: ['@service_container']
+        tags:
+            - { name: kernel.event_subscriber}
+
+    cms.list.subscriber:
+        class: CmsBundle\EventSubscriber\ListSubscriber
+        arguments: ['@service_container']
+        tags:
+            - { name: kernel.event_subscriber}
+
+    cms.reset.subscriber:
+        class: CmsBundle\EventSubscriber\ResetSubscriber
+        arguments: ['@service_container']
+        tags:
+            - { name: kernel.event_subscriber}
+
+    cms.front_controller_listener:
+        class: CmsBundle\Listener\FrontControllerListener
+        arguments: ['@event_dispatcher']
+        tags:
+            - { name: kernel.event_listener, event: kernel.controller, method: onKernelController }

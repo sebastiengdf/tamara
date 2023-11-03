@@ -1,0 +1,124 @@
+<!-- User Account: style can be found in dropdown.less -->
+
+
+<li class="dropdown user user-menu notification  ">
+
+    <a id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="/page.html">
+        <i class="glyphicon glyphicon-bell"></i>
+        {% if nbnotif is defined %}
+
+            <div id="nbnotif" class="num" data-nbnotif= {{ nbnotif }}>
+                       {{ nbnotif }}
+            </div>
+        {% endif %}
+
+    </a>
+
+    <ul class="dropdown-menu">
+
+        <ul class="nav nav-tabs" >
+            <!-- todo jquery click sur notif ajout open a classe user-menu  -->
+            <li id='notif-tab' class="active"><a data-toggle="tab" href="#home" ><div class="menu-title " >Notifications </div ></a></li>
+            <li   id='histo-tab' ><a  data-toggle="tab" href="#histo"><div class="menu-title " >Historique </div ></a></li>
+        </ul>
+
+        <div class="tab-content">
+            <div id="home" class="tab-pane fade in active">
+                <!-- Menu Footer-->
+                <div class="notification-heading text-center">
+                    <hr>
+                </div>
+                <div class="ml-2 notifications-wrapper">
+
+
+                    {% if notification is defined %}
+
+                        {% for result in notification %}
+
+                            <a href='{{ path('notification_delete',{'message_id' :result.message,'user_id':result.user.id}) }}'
+                               class="notification-box">
+
+                                <div class="row ">
+
+                                    <div class="col-lg-10 col-sm-10 col-10">
+                                        <strong class="text-info">
+                                            {{ result.content }}
+                                            <small class="text-success"></small>
+
+                                        </strong><br>
+                                        <small class="text-warning">{{ result.dateCreation |date(' H:i|d-m-Y') }}
+                                        </small>
+                                        Vous avez {{ result.nbmessage }} messages.
+                                        </small>
+
+
+                                    </div>
+                                </div>
+                            </a>
+                            <hr >
+
+                        {% endfor %}
+
+                    {% endif %}
+
+
+                </div>
+            </div>
+            <div id="histo" class="tab-pane fade">
+                <div class="notification-heading text-center">
+                    <hr>
+                </div>
+                <div class="ml-2 notifications-wrapper">
+
+                    {% if historique is defined %}
+
+                        {% for result in historique %}
+
+                            <a href='{{ path('notification_historique',{'facture_id' :result.facture,'conversation_id':result.conversation}) }}'
+                               class="notification-box">
+
+                                <div class="row ">
+
+                                    <div class="col-lg-10 col-sm-10 col-10">
+                                        <strong class="text-info">
+                                            {{ result.title }}
+                                            <small class="text-success"></small>
+
+                                        </strong><br>
+                                        <small class="text-warning">{{ result.dateCreation |date(' H:i|d-m-Y') }}
+                                        </small>
+                                        Vous avez {{ result.nbmessage }} messages.
+                                        </small>
+
+
+                                    </div>
+                                </div>
+                            </a>
+                            <hr >
+
+                        {% endfor %}
+
+                    {% endif %}
+
+
+                </div>
+                        <div class="notification-footer"><h4 class="menu-title">Voir tout<i
+                        class="glyphicon glyphicon-circle-arrow-right"></i></h4></div>
+
+
+
+            </div>
+
+        </div>
+
+
+
+
+        <li class="divider"></li>
+
+    </ul>
+</li>
+
+
+
+

@@ -1,0 +1,25 @@
+{% extends 'SonataAdminBundle:CRUD:base_list.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        .sonata-ba-list-field-header th:nth-child(1) {
+            width: 50px;
+        }
+        .sonata-ba-list-field-header th:nth-child(3) {
+            width: 200px;
+        }
+    </style>
+{% endblock stylesheets %}
+
+ {% block list_header %}
+     {{ parent() }}
+     {% include '@Core/admin/collapse.html.twig' %}
+ {% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        {% include '@Cms/Page/page_list.js.twig' %}
+    </script>
+{% endblock javascripts %}

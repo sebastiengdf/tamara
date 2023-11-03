@@ -1,0 +1,12 @@
+services:
+
+    core.admin_ajax_listener:
+        class: CoreBundle\EventListener\AdminAjaxListener
+        arguments: ["@core.security"]
+        tags:
+            - { name: kernel.event_listener, event: kernel.controller, method: onKernelController }
+
+    core.ajax_listener:
+        class: CoreBundle\EventListener\AjaxListener
+        tags:
+            - { name: kernel.event_listener, event: kernel.controller, method: onKernelController }

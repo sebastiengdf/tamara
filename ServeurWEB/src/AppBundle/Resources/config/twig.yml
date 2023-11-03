@@ -1,0 +1,15 @@
+services:
+    app.getFournisseur:
+        class: AppBundle\Twig\FournisseurTwig
+        arguments: ["@app.manager.fournisseur"]
+        tags:
+            - { name: twig.extension }
+        calls:
+            - [setContainer, [ '@service_container' ]]
+    app.getFacture:
+        class: AppBundle\Twig\FactureTwig
+        arguments: ["@app.manager.facture", '@service_container' ]
+        tags:
+            - { name: twig.extension }
+        calls:
+            - [setContainer, [ '@service_container' ]]

@@ -1,0 +1,10 @@
+{% if granted('user', 'user', 'list') %}
+<li icon="<i class='fa fa-puzzle-piece'></i>" class="treeview">
+    <a href="#"><span class="fa fa-users">&nbsp;</span><span>Utilisateur</span><i class="fa pull-right fa-angle-left"></i></a>
+    <ul class="treeview-menu menu_level_1">
+        {% if granted('user', 'user', 'list') %}<li><a href="{{ path('admin_user_user_list') }}">Utilisateur</a></li>{% endif %}
+        {% if granted('user', 'group', 'list') %}<li><a href="{{ path('admin_user_group_list') }}">Groupe</a></li>{% endif %}
+
+    </ul>
+</li>
+{% endif %}

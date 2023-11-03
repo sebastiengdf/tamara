@@ -1,0 +1,42 @@
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{ asset('assets/css/stylecustom.css') }}" />
+{% endblock %}
+
+{% if granted('app', 'factureenerreur', 'list') or granted('app', 'factureaaffecter', 'list') or granted('app', 'factureasaisir', 'list') or granted('app', 'factureaapprouver', 'list') or granted('app', 'factureattentebc', 'list') or granted('app', 'factureavalider', 'list') or granted('app', 'factureapayer', 'list') or granted('app', 'facturepaye', 'list')  or granted('app', 'facturemanuelle', 'list')%}
+<li icon="<i class='fa fa-puzzle-piece'></i>" class="treeview">
+    <a href="#"><span class="fa fa-file-excel-o">&nbsp;</span>
+    <span class='facebooklabel' >Mes factures</span>{% if getNbGranted()>0 %}<span class='facebooknotif'>{{ getNbGranted()}}</span>{% endif %}
+    
+    
+    <i class="fa pull-right fa-angle-left"></i></a>
+    <ul class="treeview-menu menu_level_1">
+        {% if granted('app', 'facturemanuelle', 'list') %}<li><a href="{{ path('admin_app_facturemanuelle_list') }}">Saisie Manuelle</a></li>{% endif %}
+        {% if granted('app', 'factureenerreur', 'list') %}<li><a href="{{ path('admin_app_factureenerreur_list') }}"><span class='facebooklabel' >En erreur</span> {% if getNbEnErreur()>0 %}<span class='facebooknotif'>{{ getNbEnErreur() }}</span>{% endif %}</a></li>{% endif %}
+        {% if granted('app', 'factureaaffecter', 'list') %}<li><a href="{{ path('admin_app_factureaaffecter_list') }}"><span class='facebooklabel' >A affecter</span>{% if getNbaAffecter()>0 %}<span class='facebooknotif'>{{ getNbaAffecter() }}</span>{% endif %}</a></li>{% endif %}
+        
+        {% if granted('app', 'factureasaisir', 'list') %}<li><a href="{{ path('admin_app_factureasaisir_list') }}"><span class='facebooklabel' >A gérer </span> {% if getNbasaisir()>0 %}<span class='facebooknotif'>{{ getNbasaisir() }}</span>{% endif %}</a></li>{% endif %}
+      
+        
+        {% if granted('app', 'factureaapprouver', 'list') %}<li><a href="{{ path('admin_app_factureaapprouver_list') }}"><span class='facebooklabel' >A approuver</span> {% if getNbaApprouver()>0 %}<span class='facebooknotif'>{{ getNbaApprouver() }}</span>{% endif %}</a></li>{% endif %}
+        {% if granted('app', 'factureattentebc', 'list') %}<li><a href="{{ path('admin_app_factureattentebc_list') }}"><span class='facebooklabel' >En attente de BC</span> {% if getNbattentebc()>0 %}<span class='facebooknotif'>{{ getNbattentebc() }}</span>{% endif %}</a></li>{% endif %}
+        
+        
+        
+        
+        {% if granted('app', 'factureenlitige', 'list') %}<li><a href="{{ path('admin_app_factureenlitige_list') }}"><span class='facebooklabel' >En litige</span> {% if getNbenlitige()>0 %}<span class='facebooknotif'>{{ getNbenlitige() }}</span>{% endif %}</a></li>{% endif %}
+        
+        {% if granted('app', 'factureagerer', 'list') %}<li><a href="{{ path('admin_app_factureagerer_list') }}"><span class='facebooklabel' > A saisir</span> {% if getNbagerer()>0 %}<span class='facebooknotif'>{{ getNbagerer() }}</span>{% endif %}</a></li>{% endif %}
+        
+        
+        {% if granted('app', 'factureavalider', 'list') %}<li><a href="{{ path('admin_app_factureavalider_list') }}"><span class='facebooklabel' >A valider</span> {% if getNbaValider()>0 %}<span class='facebooknotif'>{{ getNbaValider() }}</span>{% endif %}</a></li>{% endif %}
+        {% if granted('app', 'factureapayer', 'list') %}<li><a href="{{ path('admin_app_factureapayer_list') }}"><span class='facebooklabel' >A payer</span> {% if getNbaPayer()>0 %}<span class='facebooknotif'>{{ getNbaPayer() }}</span>{% endif %}</a></li>{% endif %}
+        
+      
+        {% if granted('app', 'facturepaye', 'list') %}<li><a href="{{ path('admin_app_facturepaye_list') }}"><span class='facebooklabel' >payées</span> {% if getNbFacturePaye()>0 %}<span class='facebooknotifnb'>({{ getNbFacturePaye() }})</span>{% endif %}</a></li>{% endif %}
+        {% if granted('app', 'factureman', 'list') %}<li><a href="{{ path('admin_app_factureman_list') }}"><span class='facebooklabel' >Modifier une facture</span></a></li>{% endif %}
+        {% if granted('app', 'facturemanapprob', 'list') %}<li><a href="{{ path('admin_app_facturemanapprob_list') }}"><span class='facebooklabel' >Modifier facture à approuver</span></a></li>{% endif %}
+        {% if granted('app', 'facturemanchgbc', 'list') %}<li><a href="{{ path('admin_app_facturemanchgbc_list') }}"><span class='facebooklabel' >Modifier facture en attente de B.C.</span></a></li>{% endif %}
+  
+    </ul>
+</li>
+{% endif %}

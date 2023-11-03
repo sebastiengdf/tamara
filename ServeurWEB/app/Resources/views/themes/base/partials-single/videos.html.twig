@@ -1,0 +1,9 @@
+{% if object.videos is not empty %}
+    {% for video in object.videos %} {# videos #}
+        {% if video.media is not empty %}
+            <a class="fancybox-media" href="http://www.youtube.com/watch?v={{ video.media.providerreference }}">
+                <img src="{% path video.media, 'large' %}" alt="{{ alt(video.media) }}" class="img-responsive">
+            </a>
+        {% endif %}
+    {% endfor %}
+{% endif %}

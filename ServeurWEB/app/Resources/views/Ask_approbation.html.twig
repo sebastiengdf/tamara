@@ -1,0 +1,19 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<body>
+Bonjour {{ prenom }},<br>
+<br>
+<br>
+<br>
+
+vous avez recu une demande d'approbation pour la facture n° {{ nfacture }}.<br>
+Nom du fournisseur : <span style="font-weight:bold;"> {{ nomfournisseur }} </span><br>
+Connectez-vous pour confirmer à:<br>
+<a href="{{ url('admin_app_factureaapprouver_edit',{'id':(id)}) }}">{{ url('admin_app_factureaapprouver_edit',{'id':(id) })}} </a><br>
+<br>
+<br>
+<br>
+D’avance merci pour votre collaboration.
+</body>
+</html>

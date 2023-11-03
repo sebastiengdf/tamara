@@ -1,0 +1,157 @@
+
+<script type="application/javascript">
+    $(function () { // activation du menu correspondant à l'URL actuelle
+        // 1er cas :  corresponadnce exacte
+        var item = $('.sidebar-menu a[href="' + location.pathname + '"]');
+
+        // 2ème cas : au plus proche, c'est à dire l'item de menu qui partage le prefix le plus grand
+        if (item.length === 0) {
+            var path = location.pathname.split('/').slice(0, -1).join('/');
+            while ((item = $('.sidebar-menu a[href^="' + path + '/"]')).length === 0 && path.length) {
+                path = path.split('/').slice(0, -1).join('/');
+            }
+        }
+        item.parents('li').addClass('active');
+        $( "body" ).on( "click", "li#notif-tab", function( event ) {
+            event.preventDefault();
+
+            setTimeout(function() {
+
+                $( ".notification" ).addClass("open");
+            },300)
+
+        });
+
+        // Empecche fermeture dropdow quand on clique sur tab
+        $( "body" ).on( "click", "li#histo-tab", function( event ) {
+            event.preventDefault();
+
+            setTimeout(function() {
+
+                $( ".notification" ).addClass("open");
+            },300)
+
+        });
+        $( "body" ).on( "click", ".notification-footer", function( event ) {
+            event.preventDefault();
+            $('#myModal2').modal("show");
+
+            $('#histo-modal').replaceWith($('#histo .notifications-wrapper').html())
+
+        });
+
+
+
+    });
+
+
+    var url = '{{ path('notification') }}';
+
+    $.ajax({
+        type: 'post',
+        url: url,
+        success: function (data) {
+            console.log(data);
+            $('.notification').replaceWith(data);
+        }
+    });
+
+    //actualise les notifs tous les 30 secondes
+    //setInterval(majNotif, {{ timeout_notification }});
+
+    // charge les messages quand modal et ouverte
+    //setInterval(loadConversationMessage, {{ timeout_modal_update }});
+
+    // met a jour date last login user
+    //setInterval(majLastLoginUser, {{ timeout_update_lastlogin }});
+
+    function majLastLoginUser() {
+
+        var url = '{{ path('updatelastlogin') }}';
+
+        $.ajax({
+            type: 'post',
+            url: url,
+            success: function (data) {
+
+                console.log('mise a jour last login user');
+
+            }
+        });
+
+    }
+
+
+    function majNotif() {
+
+        var url = '{{ path('notification') }}';
+        var nbnotifbefore = $('#nbnotif').data('nbnotif');
+
+        $.ajax({
+            type: 'post',
+            url: url,
+            success: function (data) {
+
+                $('.notification').replaceWith(data);
+                var nbnotif = $('#nbnotif').data('nbnotif');
+
+                if (nbnotifbefore < nbnotif && nbnotif != 0) {
+                    toastr.success('Notification Facture', 'Vous avez une nouvelle notification.', {
+                            onclick: function () {
+                                setTimeout(function () {
+                                    $('.notification ').addClass('open');
+                                }, 10);
+
+                            }
+                        }
+                    );
+
+                }
+
+
+            }
+        });
+
+    }
+
+    // recharge la conversation tous les 10 secondes
+    function loadConversationMessage() {
+        var idConversation = $(".inbox_chat .chat_list.active_chat").attr('id');
+
+        if (idConversation) {
+
+            var url = $('#modal-tchat').data('url-conversation');
+            var urlmessage = $('#modal-tchat').data('url-message');
+
+            // scroll en bas
+            $('.msg_history').scrollTop($('.msg_history')[0].scrollHeight);
+
+            if ($('#modal-tchat').is(':visible')) {
+
+                $.ajax({
+                    type: 'post',
+                    url: url,
+
+                    success: function (data) {
+
+                        $('.inbox_chat').html(data);
+                        $("#" + idConversation).addClass('active_chat');
+
+                        $.ajax({
+                            type: 'post',
+                            data: {"lastid": idConversation},
+                            url: urlmessage,
+                            success: function (data) {
+                                $('.message').html(data);
+                                $('.msg_history').scrollTop($('.msg_history')[0].scrollHeight);
+
+                            }
+                        });
+
+                    }
+                });
+            }
+        }
+
+    }
+</script>

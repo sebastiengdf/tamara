@@ -1,0 +1,4 @@
+{% extends '@Cms/Cms/front'~ajax~'.html.twig' %}
+{% block content %}
+    {{ include(template_from_string(object.content)) }}
+{% endblock content %}

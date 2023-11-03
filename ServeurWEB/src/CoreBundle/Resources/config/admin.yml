@@ -1,0 +1,33 @@
+services:
+    core.admin.config:
+        class: AppBundle\Admin\ConfigAdmin
+        arguments: [~, CoreBundle\Entity\Config, CoreBundle:Admin\ConfigAdmin]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Config }
+        calls:
+            - [setContainer, [ '@service_container' ]]
+
+    core.admin.image:
+        class: CoreBundle\Admin\ImageAdmin
+        arguments: [~, CoreBundle\Entity\Image, CoreBundle:Admin\ImageAdmin]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Image }
+
+    core.admin.fichier:
+        class: CoreBundle\Admin\FichierAdmin
+        arguments: [~, CoreBundle\Entity\Fichier, CoreBundle:Admin\FichierAdmin]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Fichier }
+
+    core.admin.variable:
+        class: CoreBundle\Admin\VariableAdmin
+        arguments: [~, CoreBundle\Entity\Variable, CoreBundle:Admin\VariableAdmin]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Variable }
+
+    core.admin.attribute:
+        class: CoreBundle\Admin\AttributeAdmin
+        arguments: [~, CoreBundle\Entity\Attribute, CoreBundle:Admin\AttributeAdmin]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Attribute }
+

@@ -1,0 +1,78 @@
+@each $key, $value in $colors {
+  .#{$key} {
+    color: $value !important;
+  }
+  .#{$key}d {
+    color: darken($value, $amount) !important;
+  }
+  .#{$key}l {
+    color: lighten($value, $amount) !important;
+  }
+  .#{$key}a {
+    color: rgba($value, $opacity) !important;
+  }
+
+  .bg#{$key} {
+    background-color: $value !important;
+  }
+  .bg#{$key}d {
+    background-color: darken($value, $amount) !important;
+  }
+  .bg#{$key}l {
+    background-color: lighten($value, $amount) !important;
+  }
+  .bg#{$key}a {
+    background-color: rgba($value, $opacity) !important;
+  }
+
+  .bd#{$key} {
+    border-color: $value !important;
+  }
+  .bd#{$key}d {
+    border-color: darken($value, $amount) !important;
+  }
+  .bd#{$key}l {
+    border-color: lighten($value, $amount) !important;
+  }
+  .bd#{$key}a {
+    border-color: rgba($value, $opacity) !important;
+  }
+}
+
+@mixin c($color, $variation: '') {
+  @if $variation == 'l' {
+    color: lighten($color, $amount) !important;
+  } @else if $variation == 'd' {
+    color: darken($color, $amount) !important;
+  } @else if $variation == 'a' {
+    color: rgba($color, $opacity) !important;
+  } @else {
+    color: $color !important;
+  }
+}
+
+@mixin bgc($color, $variation: '') {
+
+  @if $variation == 'l' {
+    background-color: lighten($color, $amount) !important;
+  } @else if $variation == 'd' {
+    background-color: darken($color, $amount) !important;
+  } @else if $variation == 'a' {
+    background-color: rgba($color, $opacity) !important;
+  } @else {
+    background-color: $color !important;
+  }
+}
+
+@mixin bdc($color, $variation: '') {
+
+  @if $variation == 'l' {
+    border-color: lighten($color, $amount) !important;
+  } @else if $variation == 'd' {
+    border-color: darken($color, $amount) !important;
+  } @else if $variation == 'a' {
+    border-color: rgba($color, $opacity) !important;
+  } @else {
+    border-color: $color !important;
+  }
+}

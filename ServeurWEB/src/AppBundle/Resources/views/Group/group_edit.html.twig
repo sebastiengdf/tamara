@@ -1,0 +1,27 @@
+{% extends '@User/Group/group_edit.html.twig' %}
+
+{% block form_group %}
+    <div class="row">
+        <div class="col-md-3">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Propriétés</h3>
+                </div>
+                <div class="box-body">
+                    {{ form_row(form.name) }}
+                    {{ form_row(form.color) }}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Rôles</h3>
+                </div>
+                <div class="box-body">
+                    {{ form_row(form.roles) }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock form_group %}

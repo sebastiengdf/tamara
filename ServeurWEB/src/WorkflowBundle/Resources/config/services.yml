@@ -1,0 +1,20 @@
+imports:
+    - { resource: parameters.yml }
+    
+services:
+#    workflow.example:
+#        class: WorkflowBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]
+    workflow.workflow:
+        class: WorkflowBundle\Workflow\Workflow
+        arguments:
+            - "@logger"
+            - "@doctrine"
+        public: true
+
+    workflow.admin.workflow_step:
+        class: WorkflowBundle\Admin\WorkflowStepAdmin
+        arguments: [~, WorkflowBundle\Entity\WorkflowStep, WorkflowBundle:WorkflowStepAdmin]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: WorkflowStep }
+        public: true

@@ -1,0 +1,7 @@
+{% if object.tags is not empty %}
+    {% for tag in object.tags %}
+        {% if tag.published %}
+            <a href="{{ path('cms_taxo_show', {'_locale': app.request.locale, 'type': 'tag', 'slug': tag.slug}) }}" class="label label-default">{{ tag.name }}</a>
+        {% endif %}
+    {% endfor %}
+{% endif %}

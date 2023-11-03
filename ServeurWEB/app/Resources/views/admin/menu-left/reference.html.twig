@@ -1,0 +1,8 @@
+<li icon="<i class='fa fa-puzzle-piece'></i>" class="treeview">
+    <a href="#"><span class="fa fa-cog fa-fw">&nbsp;</span><span>Références</span><i class="fa pull-right fa-angle-left"></i></a>
+    <ul class="treeview-menu menu_level_1">
+        {% if granted('app', 'fournisseur', 'list') %}<li><a href="{{ path('admin_app_fournisseur_list') }}">Fournisseur</a></li>{% endif %}
+        {#{% if granted('app', 'centrecout', 'list') %}<li><a href="{{ path('admin_app_centrecout_list') }}">Centre Coût</a></li>{% endif %}#}
+        {#{% if granted('app', 'tva', 'list') %}<li><a href="{{ path('admin_app_tva_list') }}">TVA</a></li>{% endif %}#}
+    </ul>
+</li>

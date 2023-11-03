@@ -1,0 +1,29 @@
+{% extends ':admin:base_edit.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {% include '@Cms/Cms/codemirror_css.html.twig' %}
+{% endblock stylesheets %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {% include '@Cms/Cms/codemirror_js.html.twig' %}
+
+    <script>
+        $(function () {
+            CodeMirror.fromTextArea($('textarea[id$="content"]')[0], {
+                theme: 'monokai',
+                lineNumbers: true,
+                mode: "xml",
+                matchBrackets: true,
+                autoCloseBrackets: true,
+                autoCloseTags: true,
+                htmlMode: true,
+            });
+
+            $('#content .CodeMirror').css('height', '950px');
+
+        })
+    </script>
+
+{% endblock javascripts %}

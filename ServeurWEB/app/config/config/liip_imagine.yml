@@ -1,0 +1,64 @@
+liip_imagine:
+    resolvers:
+        default:
+            web_path:
+                web_root: %kernel.root_dir%/../web
+                cache_prefix: uploads/cache
+
+    loaders:
+        sonata:
+            filesystem:
+                data_root: %kernel.root_dir%/../web/uploads/media
+
+        default:
+            filesystem:
+                data_root: %kernel.root_dir%/../web
+
+
+    driver: gd
+    cache: default
+    data_loader: sonata
+    controller:
+        filter_action:  liip_imagine.controller:filterAction
+        filter_runtime_action: liip_imagine.controller:filterRuntimeAction
+
+    filter_sets:
+        cache: ~
+
+        square:
+            quality: 70
+            filters:
+                thumbnail: { size: [300, 300], mode: outbound }
+        small_square:
+            quality: 70
+            filters:
+                thumbnail: { size: [80, 80], mode: outbound }
+        thumb:
+            quality: 70
+            filters:
+                thumbnail: { size: [100, 66], mode: outbound }
+        medium:
+            quality: 70
+            filters:
+                thumbnail: { size: [250, 166], mode: outbound }
+        large:
+            quality: 70
+            filters:
+                thumbnail: { size: [500, 333], mode: outbound }
+        x_large:
+            quality: 70
+            filters:
+                thumbnail: { size: [750, 500], mode: outbound }
+        xx_large:
+            quality: 70
+            filters:
+                thumbnail: { size: [1000, 666], mode: outbound }
+        xxx_large:
+            quality: 70
+            filters:
+                thumbnail: { size: [1250, 833], mode: outbound }
+        slide_full_hd:
+            quality: 70
+            filters:
+                thumbnail: { size: [1920, 640], mode: outbound }
+

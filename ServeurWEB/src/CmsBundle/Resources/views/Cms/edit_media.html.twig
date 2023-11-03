@@ -1,0 +1,50 @@
+<div class="box box-primary">
+    <div class="box-header with-border">
+        <h3 class="box-title">Média</h3>
+        <div class="box-tools pull-right">
+            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+            </button>
+        </div>
+        <!-- /.box-tools -->
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body">
+        <div class="row">
+            {% block edit_media %}
+                {% if form.pictures is defined %}
+                    <div class="col-md-6">
+                        <div class="box box-primary">
+                            <h4>Images</h4>
+                            {{ form_row(form.pictures) }}
+                        </div>
+                    </div>
+                {% endif %}
+                {% if form.videos is defined %}
+                    <div class="col-md-6">
+                        <div class="box box-primary">
+                            <h4>Vidéos</h4>
+                            {{ form_row(form.videos) }}
+                        </div>
+                    </div>
+                {% endif %}
+                {% if form.files is defined %}
+                    <div class="col-md-4">
+                        <div class="box box-primary">
+                            <h4>Fichiers</h4>
+                            {{ form_row(form.files) }}
+                        </div>
+                    </div>
+                {% endif %}
+                {% if form.fields is defined %}
+                    <div class="col-md-12">
+                        <div class="box box-primary">
+                            <h4>Champs supplémentaires</h4>
+                            {{ form_row(form.fields) }}
+                        </div>
+                    </div>
+                {% endif %}
+            {% endblock edit_media %}
+        </div>
+    </div>
+    <!-- /.box-body -->
+</div>

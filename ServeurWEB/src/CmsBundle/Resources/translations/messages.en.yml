@@ -1,0 +1,30 @@
+core:
+    not_found:
+        langage: Lang not found
+    pagination:
+        older: Older
+        newer: Newer
+    auth:
+        login: Login
+        register: Register
+        profil: Profil
+        logout: Logout
+    no_access: Forbiden access
+
+page:
+    error:
+        not_found: Page not found
+
+cpt:
+    error:
+        not_found: Type not found
+
+post:
+    error:
+        not_found: Post not found
+
+taxo:
+    error:
+        not_found: Taxonomy not found
+    categorys: Categorys
+    tags: Tags

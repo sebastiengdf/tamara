@@ -1,0 +1,21 @@
+{% extends 'SonataAdminBundle:CRUD:edit.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        #generatedRoles .control-label__text {
+            display: none;
+        }
+    </style>
+{% endblock stylesheets %}
+
+{% block form %}
+    {% include '@Core/admin/form_start.html.twig' %}
+    {% block form_group %}
+    {% endblock form_group %}
+    {% include '@Core/admin/form_end.html.twig' %}
+{% endblock form %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {% include '@Core/core/role.html.twig' %}
+{% endblock %}

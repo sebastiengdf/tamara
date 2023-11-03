@@ -1,0 +1,65 @@
+{% if reponse is defined%}
+    {%for result in reponse  %}
+        {% if result.conversation is defined %}
+
+            <div class="chat_list " id="{{ result.conversation.conversation.id }}">
+
+                <div class="chat_people">
+
+                    <div class="chat_ib">
+                        <h5>
+
+                            {{ result.conversation.conversation.title }}
+                            <span
+                                    class="chat_date"> {{ result.conversation.dateCreation|date('H:i  |  d-m-y  ') }}
+                        </span></h5>
+                        <p>{{ result.conversation.content }} .</p>
+
+                        {% if result.nbmessage is defined %}
+
+                            <span class="badge badge-success">  {{ result.nbmessage }}
+                            </span>
+
+                        {% endif %}
+
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+
+    {%endfor%}
+{% endif %}
+
+    <script>
+
+        // si clique sur une conversation
+        $('.chat_list').click(function () {
+            $(".inbox_chat .chat_list.active_chat").removeClass("active_chat");
+            $(this).addClass("active_chat");
+
+            $('#modal-title').html("Message");
+            var urlmessage = '{{ path('message',{'id' : app.request.get('id')}) }}';
+            var id = $(this).attr('id');
+            $('#chargement_message').show();
+            $('.message').hide();
+            $('.type_msg').hide();
+
+            $.ajax({
+                type: 'post',
+                data: {"lastid": id},
+                url: urlmessage,
+                success: function (data) {
+                    $('.message').html(data);
+                    $('#dataModal').modal("show");
+                    $('.message').hide();
+                    $('.message').fadeIn(400);
+                    $('.type_msg').fadeIn(500);
+
+
+                },
+
+            });
+
+
+        });
+</script>

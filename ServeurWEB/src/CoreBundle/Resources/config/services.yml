@@ -1,0 +1,20 @@
+imports:
+    - { resource: twig.yml }
+    - { resource: admin.yml }
+    - { resource: listener.yml }
+
+services:
+    core.service.role:
+        class: CoreBundle\Services\Roles
+        arguments: ["@service_container"]
+
+    core.encode:
+        class: CoreBundle\Services\Encode
+        arguments: ["@service_container"]
+
+    authentication.handler.login_success_handler:
+        class:  CoreBundle\Security\LoginSuccessHandler
+        arguments:  ['@router', '@request_stack']
+
+    core.generate_number:
+        class: CoreBundle\Services\GenerateNumber

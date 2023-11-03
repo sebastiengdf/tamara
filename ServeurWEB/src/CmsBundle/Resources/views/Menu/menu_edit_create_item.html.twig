@@ -1,0 +1,8 @@
+<div id="navigation" class="margin-top-l list-group">
+    <a class="list-group-item first-level" href="#list-page" data-toggle="collapse" data-parent="#navigation">Pages<b class="caret"></b></a>
+    <div id="list-page" class="submenu panel-collapse collapse">
+        {% for page in pages %}
+            <a href="{{ path('nav_admin_add_page', {'menu':menu.id, 'page': page.id}) }}" class="list-group-item">{{ page.name }}</a>
+        {% endfor %}
+    </div>
+</div>

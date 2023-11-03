@@ -1,0 +1,80 @@
+<script>
+
+    function getEntityName(string) {
+        var label = string.find('span').text();
+        return label.split('_').slice(0, -1).join('_');
+    }
+
+    $(function () {
+
+        // get entity
+        var entities = [];
+        $('ul[id$="roles"] li').each(function() {
+            var entity = getEntityName($(this));
+            if(jQuery.inArray(entity, entities) === -1  && entity != 'ROLE'   && entity != 'ROLE_SUPER') {
+                entities.push(entity);
+            }
+        });
+
+        // init table
+        $('div[id$="roles"]').append('' +
+                '<table class="table table-condensed table-hover table-bordered table-striped" id="generatedRoles">' +
+                '<thead>' +
+                '<tr>' +
+                '<td></td>'+
+                '<td>LIST</td>'+
+                '<td>VIEW</td>'+
+                '<td>CREATE</td>'+
+                '<td>EDIT</td>'+
+                '<td>DELETE</td>'+
+                '<td>EXPORT</td>'+
+                '<td>OWNER</td>'+
+                '<td>MASTER</td>'+
+                '<td>ALL</td>'+
+                '</tr>' +
+                '</thead><tbody></tbody>' +
+                '</table>');
+
+        // create line
+        entities.forEach(function(e) {
+            $('#generatedRoles tbody').append('' +
+                    '<tr data-entity="'+e+'">' +
+                    '<td>' +
+                    '<div class="btn btn-group"><button type="button" class="btn btn-success checkeverything"><i class="fa fa-asterisk"></i></button><button type="button" class="btn btn-danger uncheckeverything"><i class="fa fa-ban"></i></button></div> '+e+'</td>' +
+                    '<td data-action="LIST" title="'+e+'_LIST"></td>' +
+                    '<td data-action="VIEW" title="'+e+'_VIEW"></td>' +
+                    '<td data-action="CREATE" title="'+e+'_CREATE"></td>' +
+                    '<td data-action="EDIT" title="'+e+'_EDIT"></td>' +
+                    '<td data-action="DELETE" title="'+e+'_DELETE"></td>' +
+                    '<td data-action="EXPORT" title="'+e+'_EXPORT"></td>' +
+                    '<td data-action="OWNER" title="'+e+'_OWNER"></td>' +
+                    '<td data-action="MASTER" title="'+e+'_MASTER"></td>' +
+                    '<td data-action="ALL" title="'+e+'_ALL"></td>' +
+                    '</tr>'
+            );
+        })
+
+        // move checkbox
+        $('ul[id$="roles"] li').each(function() {
+            var self = $(this);
+            var label = self.find('span').text();
+            if(label != 'ROLE_ADMIN' && label != 'ROLE_SUPER_ADMIN') {
+                var labelA = label.split('_');
+                var entity = labelA.slice(0, -1).join('_');
+                var action = labelA[labelA.length-1];
+                $('#generatedRoles tbody').find("[data-entity='" + entity + "']").find("[data-action='" + action + "']").prepend(self.find('.checkbox'));
+                self.remove();
+            }
+        });
+
+        $('body').on('click', '.checkeverything', function() {
+            var self = $(this);
+            self.closest('tr').find('.checkbox').iCheck('check');
+        });
+
+        $('body').on('click', '.uncheckeverything', function() {
+            var self = $(this);
+            self.closest('tr').find('.checkbox').iCheck('uncheck');
+        });
+    });
+</script>

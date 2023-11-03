@@ -1,0 +1,412 @@
+{% extends 'SonataAdminBundle:CRUD:edit.html.twig' %}
+
+{% block form %}
+	{#
+
+		{%  if securityAsGrantedAcces('ROLE_APP_ADMIN_FACTUREATTENTEBCALL_ALL') %}
+        {% endif %}#}
+	{# inclus tchat	#}
+	{% if    app.request.get('id') is defined and    app.request.get('id')is not empty %}
+		{% include '@App/Conversation/modal_tchat.html.twig' %}
+	{% endif %}
+
+	{% set groupeComptable = 'test' %}
+	{% for gou in app.user.groups %}
+		{% if gou.name == 'Comptable' %}
+			{% set groupeComptable = gou.name %}
+		{% endif %}
+	{% endfor %}
+
+	{% if  1==1 %}
+		
+		{% include '@Core/admin/form_start.html.twig' %}
+		
+		{% if admin.id(object) is not null %}
+		
+			{% set colmd4 = "col-md-12" %}
+			{% set colmd6 = "col-md-12" %}
+			{% set colmd8 = "col-md-12" %}
+			
+		{% else %}
+		
+			{% set colmd4 = "col-md-4" %}
+			{% set colmd6 = "col-md-6" %}
+			{% set colmd8 = "col-md-8" %}
+			
+		{% endif %}
+		
+		{% if admin.id(object) is not null %}
+
+
+			<div class="row">
+				<div class="col-md-4">
+					<div class="row">
+						<div class="{{ colmd4 }}">
+							<div class="box box-danger">
+								<div class="box-header with-border">
+									<h3 class="box-title">Données obligatoires</h3>
+								</div>
+								<div class="box-body">
+									<div id="pdfLink">
+									{{ form_row(form.fichier) }}
+									</div>
+									{{ form_row(form.fournisseur) }}
+									{{ form_row(form.name) }}
+									{{ form_row(form.date_saisie) }}
+								</div>
+							</div>
+						</div>
+						
+						{% if granted('app', 'facturemanstatut', 'list') %}
+						 {% if  form.step is defined%}
+    					<div class="{{ colmd6 }}">
+    						<div class="box box-success">
+    							<div class="box-header with-border">
+    								<h3 class="box-title">Modification de Statut</h3>
+    							</div>
+    						<div class="box-body">
+        						    
+        								{{ form_row(form.step) }}	
+        						
+								</div>
+							</div>
+						</div>
+				        {% endif %}
+				        {% endif %}
+						<div class="{{ colmd6 }}">
+							<div class="box box-warning">
+								<div class="box-header with-border">
+									<h3 class="box-title">Informations Comptabilité</h3>
+								</div>
+								<div class="box-body">
+									{{ form_row(form.affactureur) }}
+									{{ form_row(form.num_compte_comptable) }}
+									{{ form_row(form.tva) }}
+									{{ form_row(form.centrecout) }}
+									{{ form_row(form.montant_ttc) }}
+									{{ form_row(form.montant_ttc_usd) }}
+								</div>
+							</div>
+						</div>
+						<div class="{{ colmd6 }}">
+							<div class="box box-warning">
+								<div class="box-header with-border">
+									<h3 class="box-title">Autres informations</h3>
+								</div>
+								<div class="box-body">
+									{{ form_row(form.affectation) }}
+									{{ form_row(form.date_echeance) }}
+									{{ form_row(form.num_saisie) }}
+									{{ form_row(form.num_ordre) }}
+								</div>
+							</div>
+						</div>
+						
+						{% if granted('app', 'facturemanbc', 'list') %}
+						<div class="{{ colmd4 }}">
+							<div class="box box-success">
+								<div class="box-header with-border">
+									<h3 class="box-title">Bon de Commande</h3>
+								</div>
+								<div class="box-body">
+									{{ form_row(form.check_bc) }}
+									{{ form_row(form.affectationapprobation) }}
+									{{ form_row(form.bon_commandes) }}
+								</div>
+							</div>
+						</div>
+						{% endif %}
+						<div class="{{ colmd4 }}">
+							<div class="box box-success">
+								<div class="box-header with-border">
+									<h3 class="box-title">Bon de Livraison</h3>
+								</div>
+								<div class="box-body">
+									{{ form_row(form.check_bl) }}
+									{{ form_row(form.bon_livraisons) }}
+								</div>
+							</div>
+						</div>
+						{% if granted('app', 'facturemanapp', 'list') %}
+						<div class="{{ colmd6 }}">
+							<div class="box box-success">
+								<div class="box-header with-border">
+									<h3 class="box-title">Approbation</h3>
+								</div>
+								<div class="box-body">
+								<div class="decideapprobation">
+								{% if  form.checkapprouve is defined%}
+									{{ form_row(form.checkapprouve) }}	
+								{% endif %}
+								{% if  form.checknonapprouve is defined%}
+									{{ form_row(form.checknonapprouve) }}	
+								{% endif %}
+								
+								{% if  form.commentairapprobation is defined%}
+									{{ form_row(form.commentairapprobation) }}
+							    {% endif %}
+							    </div>
+							    <div class="box-body">						
+						        {% if  form.approbation is defined%}
+						        
+								    {{ form_row(form.approbation) }}	
+								 
+							    {% endif %}
+							
+								</div>
+							    
+								</div>
+							</div>
+						</div>
+						{% endif %}
+					
+						<div class="{{ colmd4 }}">
+							<div class="box box-danger">
+								<div class="box-header with-border">
+									<h3 class="box-title">Validation</h3>
+								</div>
+								<div class="box-body">
+									{{ form_row(form.check_valide) }}
+									{{ form_row(form.check_paye) }}
+								</div>
+							</div>
+						</div>
+						
+						
+						<div class="{{ colmd4 }}">
+							<div class="box box-danger">
+								<div class="box-header with-border">
+									<h3 class="box-title">Litige</h3>
+								</div>
+								<div class="box-body">
+									{{ form_row(form.litige) }}
+								
+								</div>
+							</div>
+						</div>
+						
+					</div>
+				</div>
+				<div class="col-md-8">
+					<div  id="pdfRenderer">
+					
+					</div>
+					<div class="{{ colmd8 }}">
+						<div class="box box-danger">
+							<div class="box-header with-border">
+								<h3 class="box-title">Commentaires</h3>
+							</div>
+							<div class="box-body">
+								{{ form_row(form.commentaires) }}
+							</div>
+						</div>
+					</div>
+				</div>	
+			</div>
+						
+		{% else %}
+				
+			<div class="row">
+				<div class="{{ colmd4 }}">
+					<div class="box box-danger">
+						<div class="box-header with-border">
+							<h3 class="box-title">Données obligatoires</h3>
+						</div>
+						<div class="box-body">
+							<div id="pdfLink">
+							{{ form_row(form.fichier) }}
+							</div>
+							{{ form_row(form.fournisseur) }}
+							{{ form_row(form.name) }}
+							{{ form_row(form.date_saisie) }}
+						</div>
+					</div>
+				</div>
+				<div class="{{ colmd4 }}">
+					<div class="box box-success">
+						<div class="box-header with-border">
+							<h3 class="box-title">Bon de Commande</h3>
+						</div>
+						<div class="box-body">
+							{{ form_row(form.check_bc) }}
+							{{ form_row(form.bon_commandes) }}
+						</div>
+					</div>
+				</div>
+				<div class="{{ colmd4 }}">
+					<div class="box box-success">
+						<div class="box-header with-border">
+							<h3 class="box-title">Bon de Livraison</h3>
+						</div>
+						<div class="box-body">
+							{{ form_row(form.check_bl) }}
+							{{ form_row(form.bon_livraisons) }}
+						</div>	'label' => 'Valider' 
+						
+					</div>
+				</div>
+				
+				
+				<div class="{{ colmd4 }}">
+					<div class="box box-success">
+						<div class="box-header with-border">
+							<h3 class="box-title">Approbation</h3>
+						</div>
+						<div class="box-body">
+						    {% if  form.checkapprouve is defined%}
+								{{ form_row(form.checkapprouve) }}	
+							{% endif %}
+							{% if  form.commentairapprobation is defined%}
+							    {{ form_row(form.commentairapprobation) }}
+							{% endif %}
+						</div>
+					</div>
+				</div>
+				
+				
+				<div class="{{ colmd4 }}">
+					<div class="box box-success">
+						<div class="box-header with-border">
+							<h3 class="box-title">Approbation</h3>
+						</div>
+						<div class="box-body">						
+						    {% if  form.approbation is defined%}
+								{{ form_row(form.approbation) }}	
+							{% endif %}
+							
+						</div>
+					</div>
+				</div>
+				
+			</div>
+			<div class="row">
+				<div class="{{ colmd6 }}">
+					<div class="box box-warning">
+						<div class="box-header with-border">
+							<h3 class="box-title">Autres informations</h3>
+						</div>
+						<div class="box-body">
+							{{ form_row(form.affectation) }}
+							{{ form_row(form.date_echeance) }}
+							{{ form_row(form.num_saisie) }}
+							{{ form_row(form.num_ordre) }}
+						</div>
+					</div>
+				</div>
+				<div class="{{ colmd6 }}">
+					<div class="box box-warning">
+						<div class="box-header with-border">
+							<h3 class="box-title">Informations Compabilité</h3>
+						</div>
+						<div class="box-body">
+							{{ form_row(form.affactureur) }}
+							{{ form_row(form.num_compte_comptable) }}
+							{{ form_row(form.tva) }}
+							{{ form_row(form.centrecout) }}
+							{{ form_row(form.montant_ttc) }}
+							{{ form_row(form.montant_ttc_usd) }}
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="{{ colmd6 }}">
+					<div class="box box-danger">
+						<div class="box-header with-border">
+							<h3 class="box-title">Validation</h3>
+						</div>
+						<div class="box-body">
+							{{ form_row(form.check_valide) }}
+							{{ form_row(form.check_paye) }}
+						</div>
+					</div>
+				</div>
+				<div class="{{ colmd8 }}">
+					<div class="box box-danger">
+						<div class="box-header with-border">
+							<h3 class="box-title">Commentaires</h3>
+						</div>
+						<div class="box-body">
+							{{ form_row(form.commentaires) }}
+						</div>
+					</div>
+				</div>
+			</div>
+		{% endif %}
+		{% include '@Core/admin/form_end.html.twig' %}
+	{% endif %}
+{% endblock form %}
+
+
+
+{% block javascripts %}
+    {{ parent() }}
+    
+    <script type="text/javascript">
+    function toggleRadioCheckbox(sender) {
+        // RadioCheckbox: 0..1 enabled in a group 
+        if (!sender.checked) return;
+        var fields = document.getElementsByName(sender.name);
+        for(var idx=0; idx<fields.length; idx++) {
+            var field = fields[idx];
+            if (field.checked && field!=sender)
+                field.checked=false;
+        }
+    }
+	</script>
+	
+    <script type="text/javascript">
+
+		jQuery(document).ready(function() {
+		
+			$('.sonata-ba-form-actions').append('<a class="btn btn-info" href="' + $('.dropdown-menu li:nth-child(3)').find('a').attr('href') + '"><i class="fa fa-mail-reply-all" aria-hidden="true"></i> Retourner à la liste</a>');
+			
+			var userConnected = $('.dropdown.user.user-menu a span').html();
+		
+			$('div.FileMandatory').each(function(){
+				var n = $(this).find( "div.vich-file > a" ).length;
+				if(n == 0){
+					$(this).find('div.vich-file > input').prop('required',true);
+				}
+			});
+			
+			$(this).find('div.vich-file > input').prop('accept', '.pdf');
+			$('body').on('sonata.add_element','#field_container_{{ admin.uniqid }}_bon_livraisons', function(e) {
+				$('#field_container_{{ admin.uniqid }}_bon_livraisons .sonata-ba-tbody tr').last().find('div.vich-file > input').prop('accept', '.pdf');
+			});
+			
+			if( $('body').find('#pdfLink a').length)
+			{
+				var link = $('#pdfLink a').attr('href');
+				$('#pdfRenderer').html('<iframe src="' + link + '" width="100%" height="100%" style="height:100%; display:block;min-height: 1000px; margin-bottom: 20px;" />');
+			}
+			
+			
+			$('#field_container_{{ admin.uniqid }}_commentaires .sonata-ba-tbody tr').each(function(){
+				if($.trim($(this).find('.sonata-ba-td-{{ admin.uniqid }}_commentaires-user .select2-chosen').html()) != $.trim(userConnected)){
+					var elementToAdd = "<tr><td></td><td>" + $(this).find("select option:selected").text() + "</td><td>" + $(this).find(".input-group input").val() + "</td><td>" + $(this).find('.sonata-ba-td-{{ admin.uniqid }}_commentaires-content textarea').val() + "</td></tr>";
+					$(this).after(elementToAdd);
+					$(this).css('display','none');
+				}else{
+					$(this).find('.select2-container').css('display','none').after("<div>" + $(this).find("select option:selected").text() + "</div>");
+					$(this).find('.input-group').css('display','none').after("<div>" + $(this).find(".input-group input").val() + "</div>");
+				}
+			});
+			
+			$('body').on('sonata.add_element','#field_container_{{ admin.uniqid }}_commentaires', function(e) {
+				$('#field_container_{{ admin.uniqid }}_commentaires .sonata-ba-tbody tr').each(function(){
+					if($.trim($(this).find('.sonata-ba-td-{{ admin.uniqid }}_commentaires-user .select2-chosen').html()) != $.trim(userConnected)){
+						var elementToAdd = "<tr><td></td><td>" + $(this).find("select option:selected").text() + "</td><td>" + $(this).find(".input-group input").val() + "</td><td>" + $(this).find('.sonata-ba-td-{{ admin.uniqid }}_commentaires-content textarea').val() + "</td></tr>";
+						$(this).after(elementToAdd);
+						$(this).css('display','none');
+					}else{
+						$(this).find('.select2-container').css('display','none').after("<div>" + $(this).find("select option:selected").text() + "</div>");
+						$(this).find('.input-group').css('display','none').after("<div>" + $(this).find(".input-group input").val() + "</div>");
+					}
+				});
+			});
+			
+		});
+	</script>
+{% endblock %}
+

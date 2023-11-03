@@ -1,0 +1,122 @@
+{% extends 'SonataAdminBundle:CRUD:edit.html.twig' %}
+
+{% block form %}
+    {% include '@Core/admin/form_start.html.twig' %}
+	CREATION
+    <div class="row">
+    
+    	<div class="col-md-4">
+            <div class="box box-danger">
+	            <div class="box-header with-border">
+	            	<h3 class="box-title">Données obligatoires</h3>
+	            </div>
+	            <div class="box-body">
+	                {{ form_row(form.fichier) }}
+	                {{ form_row(form.fournisseur) }}
+	                {{ form_row(form.name) }}
+	                {{ form_row(form.date_saisie) }}
+	            </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4">
+            <div class="box box-success">
+	            <div class="box-header with-border">
+	            	<h3 class="box-title">Bon de Livraison</h3>
+	            </div>
+	            <div class="box-body">
+	                {{ form_row(form.check_bl) }}
+	                {{ form_row(form.bon_livraisons) }}
+	            </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4">
+            <div class="box box-success">
+	            <div class="box-header with-border">
+	            	<h3 class="box-title">Bon de Commande</h3>
+	            </div>
+	            <div class="box-body">
+	                {{ form_row(form.bon_commandes) }}
+	            </div>
+            </div>
+        </div>
+        
+    </div>
+    <div class="row">
+    
+    	<div class="col-md-6">
+            <div class="box box-warning">
+	            <div class="box-header with-border">
+	            	<h3 class="box-title">Autres informations</h3>
+	            </div>
+	            <div class="box-body">
+	                {{ form_row(form.affectation) }}
+	                {{ form_row(form.date_echeance) }}
+	                {{ form_row(form.num_saisie) }}
+	                {{ form_row(form.num_ordre) }}
+	            </div>
+            </div>
+        </div>
+        
+        <div class="col-md-6">
+            <div class="box box-warning">
+	            <div class="box-header with-border">
+	            	<h3 class="box-title">Informations Compabilité</h3>
+	            </div>
+	            <div class="box-body">
+	            	{{ form_row(form.affactureur) }}
+	                {{ form_row(form.num_compte_comptable) }}
+	                {{ form_row(form.tva) }}
+	                {{ form_row(form.centrecout) }}
+	                {{ form_row(form.montant_ttc) }}
+	            </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+    	<div class="col-md-4">
+            <div class="box box-danger">
+	            <div class="box-header with-border">
+	            	<h3 class="box-title">Validation</h3>
+	            </div>
+	            <div class="box-body">
+	                {{ form_row(form.check_valide) }}
+	                {{ form_row(form.check_paye) }}
+	            </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="box box-danger">
+	            <div class="box-header with-border">
+	            	<h3 class="box-title">Commentaires</h3>
+	            </div>
+	            <div class="box-body">
+	                {{ form_row(form.commentaires) }}
+	            </div>
+            </div>
+        </div>
+    </div>
+    
+    {% include '@Core/admin/form_end.html.twig' %}
+
+{% endblock form %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+		jQuery(document).ready(function() {
+			$('div.FileMandatory').each(function(){
+				var n = $(this).find( "div.vich-file > a" ).length;
+				if(n == 0){
+					$(this).find('div.vich-file > input').prop('required',true);
+				}
+			});
+			
+			$('div.pdfMandatory').each(function(){
+				$(this).find('div.vich-file > input').prop('accept', '.pdf');
+			});
+		});
+	</script>
+{% endblock %}
+

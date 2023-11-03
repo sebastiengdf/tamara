@@ -1,0 +1,8 @@
+sonata_admin:
+    security:
+        handler: sonata.admin.security.handler.role
+    templates:
+        short_object_description: CmsBundle:Cms:short_object_description.html.twig
+        dashboard: :admin:dashboard.html.twig
+        layout: :admin:base.html.twig
+    persist_filters: true

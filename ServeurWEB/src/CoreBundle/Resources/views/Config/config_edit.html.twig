@@ -1,0 +1,21 @@
+{% extends 'SonataAdminBundle:CRUD:edit.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock stylesheets %}
+
+{% block actions %}
+{% endblock actions %}
+
+
+{% block form %}
+    {% include '@Core/admin/form_start.html.twig' %}
+        {% block config_form %}
+        {% endblock config_form %}
+    {% include '@Core/Config/form_end.html.twig' %}
+{% endblock form %}
+
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock javascripts %}

@@ -1,0 +1,36 @@
+services:
+    core.getConfig:
+        class: CoreBundle\Twig\GetConfig
+        arguments: ["@doctrine.orm.entity_manager"]
+        tags:
+            - { name: twig.extension }
+
+    core.security:
+        class: CoreBundle\Twig\Security
+        arguments:
+            - '@security.token_storage'
+            - '@security.authorization_checker'
+        tags:
+            - { name: twig.extension }
+
+    core.GetVars:
+        class:     CoreBundle\Twig\GetVars
+        arguments: ['@doctrine.orm.entity_manager']
+        tags:
+            -  { name: twig.extension }
+
+    cms_core.StringFunction:
+        class:     CoreBundle\Twig\StringFunction
+        tags:
+            -  { name: twig.extension }
+
+    cms_core.ImageFunction:
+        class:     CoreBundle\Twig\ImageFunction
+        tags:
+            -  { name: twig.extension }
+
+    core.media.imagine.twig.extension:
+        class: CoreBundle\Twig\MediaImagineExtension
+        arguments: ["@sonata.media.manager.media", "@liip_imagine.twig.extension", "@sonata.media.twig.extension"]
+        tags:
+            -  { name: twig.extension }

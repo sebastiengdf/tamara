@@ -1,0 +1,38 @@
+var locale = '{{ app.request.query.get('tl') }}';
+
+$(function () {
+    {#Activation de l'edition'#}
+    {#$('.content').on('click', '.quick-edit', function (e) {#}
+        {#e.preventDefault();#}
+        {#var self = $(this);#}
+        {#var data = {#}
+            {#'page': self.data('page'),#}
+            {#'locale': locale#}
+        {#};#}
+        {#$.ajax({#}
+            {#type: 'GET',#}
+            {#url: Routing.generate('page_ajax_admin_get_quick_form', data),#}
+            {#dataType: 'json'#}
+        {#}).success(function (json) {#}
+            {#self.closest('#identification_detail_' + data.page).html(json['html']);#}
+        {#});#}
+    {#});#}
+
+    {#Enregistrement de l'edition#}
+    {#$('.content').on('click', '.quick-save', function (e) {#}
+        {#e.preventDefault();#}
+        {#var self = $(this);#}
+        {#var data = {#}
+            {#'page': self.data('page'),#}
+            {#'locale': locale,#}
+            {#'title': $('input[name="title"]').val()#}
+        {#};#}
+        {#$.ajax({#}
+            {#type: 'PUT',#}
+            {#url: Routing.generate('page_ajax_admin_put_quick_form', data),#}
+            {#dataType: 'json'#}
+        {#}).success(function (json) {#}
+            {#self.closest('#identification_detail_' + data.page).html(json['html']);#}
+        {#});#}
+    {#});#}
+});

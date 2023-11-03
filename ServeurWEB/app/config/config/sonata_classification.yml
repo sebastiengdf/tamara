@@ -1,0 +1,7 @@
+sonata_classification: ~
+
+doctrine:
+    orm:
+        mappings:
+            SonataClassificationBundle: ~
+            ApplicationSonataClassificationBundle: ~

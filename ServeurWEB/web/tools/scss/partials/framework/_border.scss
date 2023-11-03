@@ -1,0 +1,64 @@
+$borders: (
+        't' : 'top',
+        'b' : 'bottom',
+        'l' : 'left',
+        'r' : 'right',
+);
+
+@each $key, $value in $borders {
+  .bd#{$key}-0 {
+    border-#{$value}-width: $spacer-border*0 !important;
+    border-style: solid;
+  }
+  .bd#{$key}-1 {
+    border-#{$value}-width: $spacer-border*1 !important;
+    border-style: solid;
+  }
+  .bd#{$key}-2 {
+    border-#{$value}-width: $spacer-border*2 !important;
+    border-style: solid;
+  }
+  .bd#{$key}-3 {
+    border-#{$value}-width: $spacer-border*3 !important;
+    border-style: solid;
+  }
+  .bd#{$key}-4 {
+    border-#{$value}-width: $spacer-border*4 !important;
+    border-style: solid;
+  }
+  .bd#{$key}-5 {
+    border-#{$value}-width: $spacer-border*5 !important;
+    border-style: solid;
+  }
+}
+
+@for $i from 0 through 5 {
+  .bd-#{$i} {
+    border: $spacer-border*$i solid !important;
+  }
+}
+
+@for $i from 0 through 5 {
+  .bdx-#{$i} {
+    @extend .bdl-#{$i};
+    @extend .bdr-#{$i};
+  }
+  .bdy-#{$i} {
+    @extend .bdt-#{$i};
+    @extend .bdb-#{$i};
+  }
+}
+
+@mixin bd($orientation, $taille: 1) {
+  @if $orientation == 'a' {
+    border: #{$taille}px solid !important;
+  } @else if $orientation == 'x' {
+    border-left: #{$taille}px solid !important;
+    border-right: #{$taille}px solid !important;
+  } @else if $orientation == 'y' {
+    border-top: #{$taille}px solid !important;
+    border-bottom: #{$taille}px solid !important;
+  } @else {
+    border-#{map_get($borders, $orientation)}: #{$taille}px solid !important;
+  }
+}

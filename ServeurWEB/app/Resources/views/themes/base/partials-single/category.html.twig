@@ -1,0 +1,5 @@
+{% if object.category.name is defined %} {#category#}
+    {% if object.category.published %}
+        <a href="{{ path('cms_taxo_show', {'_locale': app.request.locale, 'type': 'category', 'slug': object.category.slug}) }}">{{ object.category.name }}</a>
+    {% endif %}
+{% endif %}

@@ -1,0 +1,18 @@
+{% extends '@Core/Config/config_edit.html.twig' %}
+
+{% block top_result %}
+    <ul class="nav navbar-nav hidden-xs">
+        <li>
+            <a class="bg-red" href="{{ path('admin_reset_visite') }}">Reset des visites</a>
+        </li>
+    </ul>
+{% endblock %}
+
+{% block config_form %}
+    <div class="row">
+        <div class="col-md-6">
+            {{ form_row(form.numberArticle) }}
+            {{ form_row(form.theme) }}
+        </div>
+    </div>
+{% endblock config_form %}

@@ -1,0 +1,18 @@
+# This file is a "template" of what your parameters.yml file should look like
+# Set parameters here that may be different on each deployment target of the app, e.g. development, staging, production.
+# http://symfony.com/doc/current/best_practices/configuration.html#infrastructure-related-configuration
+parameters:
+    database_host: bddtamara
+    database_port: 3307
+    database_name: totalinvoicedbtest2
+    database_user: root
+    database_password: Boss132
+    mailer_transport: gmail
+    mailer_host: smtp.gmail.com
+    mailer_user: totaldematfreunion@gmail.com
+    mailer_password: C2i@total@demat
+    mailer_port: 465
+    secret: ThisTokenIsNotSoSecretChangeIt
+    default_timeout_notification: 30000
+    default_timeout_modal_update: 5000
+    default_timeout_update_lastlogin : 4

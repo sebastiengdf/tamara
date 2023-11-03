@@ -1,0 +1,52 @@
+{% extends "@FOSUser/layout.html.twig" %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        .content-wrapper, .skin-black .wrapper, .skin-black .main-sidebar, .skin-black .left-side{
+            background-color: transparent!important;
+        }
+        .login-logo a{
+            color:#fff;
+            text-shadow: 1px 1px #000000;
+			font-size: 50px;
+			font-family: sans-serif;
+        }
+        
+        .login-logo a::FIRST-LETTER{
+            color:#00419b;
+        }
+        
+        .login-box-body{
+    		background: rgba(255, 255, 255, .5);
+    		border-radius: 10px;
+    		
+		}
+		.login-box-msg{
+    		color: #ff9000;
+    		text-shadow: 1px 1px #555;
+    		font-weight:500;
+    		font-size:15px;
+		}
+    </style>
+{% endblock %}
+
+{% block fos_user_content %}
+    {{ include('@FOSUser/Security/login_content.html.twig') }}
+{% endblock fos_user_content %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('assets/js/min/jquery.backstretch.min.js') }}"></script>
+	<script type="text/javascript">
+	jQuery(document).ready(function() {
+    /*
+        Fullscreen background
+    */
+    $.backstretch([
+                    "{{ asset('assets/img/2.jpg') }}"
+	              , "{{ asset('assets/img/3.jpg') }}"
+	              , "{{ asset('assets/img/1.jpg') }}"
+	             ], {duration: 8000, fade: 1500});
+});
+	</script>
+{% endblock %}

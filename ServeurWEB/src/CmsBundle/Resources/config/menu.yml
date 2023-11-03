@@ -1,0 +1,8 @@
+services:
+    cms_nav.BuildMenu:
+        class: CmsBundle\Menu\BuildMenu
+        arguments: ['@doctrine.orm.entity_manager', '@router']
+
+    cms_nav.nodeLoader:
+        class: CmsBundle\Menu\NodeLoader
+        arguments: ["@knp_menu.factory", '@router', '@doctrine.orm.entity_manager']

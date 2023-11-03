@@ -1,0 +1,117 @@
+<div class="col-md-2">
+    <div class="box">
+        <div class="box-header">
+            <h3 class="box-title">Publication</h3>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body no-padding">
+            <table class="table">
+                <tbody>
+                <tr>
+                    <th>État</th>
+                    <td>
+                        {% set checked = (object.translation('published', locale)) ? 'checked' : '' %}
+                        <input type="checkbox" name="published" {{ checked }}>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Date</th>
+                    <td>{{ object.publishedStart|date('d/m/Y H:i:s') }}</td>
+                </tr>
+                </tbody>
+            </table>
+            <button class="btn btn-success btn-block quick-save mt-1" data-page="{{ object.id }}">Sauvegarder</button>
+        </div>
+        <!-- /.box-body -->
+    </div>
+</div>
+<div class="col-md-2">
+    <div class="box">
+        <div class="box-header">
+            <h3 class="box-title">Propriété</h3>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body no-padding">
+            <table class="table">
+                <tbody>
+                <tr>
+                    <th>Dossier</th>
+                    <td>
+
+                        <select name="folder" id="" class="form-control">
+                            <option value="">-- Dossier --</option>
+                            {% for folder in folders %}
+                                <option value="">{{ folder.translation('name', locale) }}</option>
+                            {% endfor %}
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Layout</th>
+                    <td>
+                        {{ object.layout }}
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <!-- /.box-body -->
+    </div>
+</div>
+<div class="col-md-3">
+    <div class="box">
+        <div class="box-header">
+            <h3 class="box-title">Date</h3>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body no-padding">
+
+            <table class="table">
+                <tbody>
+                <tr>
+                    <th>Création</th>
+                    <td>{{ object.created|date('d/m/Y H:i:s') }}</td>
+                </tr>
+                <tr>
+                    <th>Modification</th>
+                    <td>{{ object.updated|date('d/m/Y H:i:s') }}</td>
+                </tr>
+                <tr></tr>
+                </tbody>
+            </table>
+        </div>
+        <!-- /.box-body -->
+    </div>
+</div>
+<div class="col-md-5">
+    <div class="box">
+        <div class="box-header">
+            <h3 class="box-title">Marketing</h3>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body no-padding">
+
+            <table class="table">
+                <tbody>
+                <tr>
+                    <th>Visite</th>
+                    <td><span class="badge bg-red">{{ object.count }}</span></td>
+                </tr>
+                <tr>
+                    <th>Title</th>
+                    <td>
+                        <input type="text" class="form-control" name="title" value="{{ object.translation('title', locale) }}">
+                    </td>
+                </tr>
+                <tr>
+                    <th>Description</th>
+                    <td>
+                        <input type="text" class="form-control" name="metaDescription" value="{{ object.translation('metaDescription', locale) }}">
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <!-- /.box-body -->
+    </div>
+</div>

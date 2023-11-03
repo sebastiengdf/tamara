@@ -1,0 +1,51 @@
+{% extends ':admin:base_edit.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {% include '@Cms/Cms/codemirror_css.html.twig' %}
+    <style>
+        {% include '@Cms/Page/page_edit.css.twig' %}
+    </style>
+{% endblock stylesheets %}
+
+{% block top_result %}
+    {% if object.id is not null %}
+        {% set locale = (app.request.query.get('tl') is not null) ? app.request.query.get('tl') : locale %}
+        <ul class="nav navbar-nav hidden-xs">
+            <li>
+                <a class="bg-green" target="_blank" href="{{ path('cms_page_show', {'_locale': locale, 'pageLink': object.url}) }}">
+                    <i class="fa fa-eye"></i>&nbsp;Voir
+                </a>
+            </li>
+        </ul>
+    {% endif %}
+{% endblock top_result %}
+
+{% block form %}
+    {% include '@Core/admin/form_start.html.twig' %}
+
+    <div class="row">
+        <div class="col-md-9" id="content">
+            {% include '@Cms/Cms/edit_content.html.twig' %}
+            {% include '@Cms/Cms/edit_seo.html.twig' %}
+        </div>
+        <div class="col-md-3">
+            {% include '@Cms/Page/page_edit_property.html.twig' %}
+            {% include '@Cms/Cms/edit_publish.html.twig' %}
+            {% include '@Cms/Cms/edit_acces.html.twig' %}
+            {% include '@Cms/Cms/edit_cache.html.twig' %}
+            {% include '@Cms/Cms/edit_date.html.twig' %}
+            {% include '@Cms/Cms/edit_asset.html.twig' %}
+        </div>
+    </div>
+
+    {% include '@Core/admin/form_end.html.twig' %}
+{% endblock form %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {% include '@Cms/Cms/codemirror_js.html.twig' %}
+    <script>
+        {% include '@Cms/Page/page_edit.js.twig' %}
+    </script>
+{% endblock javascripts %}

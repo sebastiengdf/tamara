@@ -1,0 +1,9 @@
+{% extends 'SonataAdminBundle:CRUD:base_list_field.html.twig' %}
+
+{% block field %}
+
+    {% for group in object.groups %}
+        <div class="{{ group.color }} px-2 py-1">{{ group }}</div>
+    {% endfor %}
+
+{% endblock %}

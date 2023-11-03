@@ -1,0 +1,14 @@
+services:
+    user.manager.user:
+        class: UserBundle\Manager\UserManager
+        arguments:
+            - '@doctrine.orm.entity_manager'
+        calls:
+            - [setRepository, [ 'UserBundle:User' ]]
+
+    user.manager.group:
+        class: UserBundle\Manager\GroupManager
+        arguments:
+            - '@doctrine.orm.entity_manager'
+        calls:
+            - [setRepository, [ 'UserBundle:Group' ]]

@@ -1,0 +1,231 @@
+services:
+    app.admin.fournisseur:
+        class: AppBundle\Admin\FournisseurAdmin
+        arguments: [~, AppBundle\Entity\Fournisseur, AppBundle:Admin\FournisseurAdmin]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Fournisseur }
+        public: true
+
+    app.admin.centrecout:
+        class: AppBundle\Admin\CentrecoutAdmin
+        arguments: [~, AppBundle\Entity\Centrecout, AppBundle:Admin\CentrecoutAdmin]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Centrecout }
+        public: true
+
+    app.admin.tva:
+        class: AppBundle\Admin\TVAAdmin
+        arguments: [~, AppBundle\Entity\TVA, AppBundle:Admin\TVAAdmin]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: TVA }
+        public: true
+
+    app.admin.action:
+        class: AppBundle\Admin\ActionAdmin
+        arguments: [~, AppBundle\Entity\Action, AppBundle:Admin\ActionAdmin]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Action }
+        public: true
+
+    app.admin.bon.commande:
+        class: AppBundle\Admin\Bon_commandeAdmin
+        arguments: [~, AppBundle\Entity\Bon_commande, AppBundle:Admin\Bon_commandeAdmin]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Bon_commande }
+        public: true
+
+    app.admin.bon.livraison:
+        class: AppBundle\Admin\Bon_livraisonAdmin
+        arguments: [~, AppBundle\Entity\Bon_livraison, AppBundle:Admin\Bon_livraisonAdmin]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Bon_livraison }
+        public: true
+        
+    app.admin.approbation:
+        class: AppBundle\Admin\ApprobationAdmin
+        arguments: [~, AppBundle\Entity\Approbation, AppBundle:Admin\ApprobationAdmin]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Approbation }
+        public: true
+        
+    app.admin.commentaire:
+        class: AppBundle\Admin\CommentaireAdmin
+        arguments: [~, AppBundle\Entity\Commentaire, AppBundle:Admin\CommentaireAdmin]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Commentaire }
+        public: true
+
+    app.admin.etiquettes:
+        class: AppBundle\Admin\EtiquettesAdmin
+        arguments: [~, AppBundle\Entity\Etiquettes, AppBundle:EtiquettesAdmin]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Etiquettes }
+        public: true
+
+        
+    app.admin.facturepaye:
+        class: AppBundle\Admin\FactureAdmin
+        arguments: [~, AppBundle\Entity\Facture, AppBundle:Admin\FactureAdmin,'FACISPAY',"@workflow.workflow",%mod_dev%,%addr_dev%,%addr_agents_total%,"@logger","@mailer",%mailer_user%]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Facture payée }
+        public: true
+        
+    app.admin.factureenerreur:
+        class: AppBundle\Admin\FactureAdmin
+        arguments: [~, AppBundle\Entity\Facture, AppBundle:Admin\FactureAdmin,'FACERR',"@workflow.workflow",%mod_dev%,%addr_dev%,%addr_agents_total%,"@logger","@mailer",%mailer_user%]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Facture en erreur }
+        public: true
+
+    app.admin.factureaaffecter:
+        class: AppBundle\Admin\FactureAdmin
+        arguments: [~, AppBundle\Entity\Facture, AppBundle:Admin\FactureAdmin,'FACTOAFF',"@workflow.workflow",%mod_dev%,%addr_dev%,%addr_agents_total%,"@logger","@mailer",%mailer_user%]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Facture à affecter }
+        public: true
+
+    app.admin.factureasaisir:
+        class: AppBundle\Admin\FactureAdmin
+        arguments: [~, AppBundle\Entity\Facture, AppBundle:Admin\FactureAdmin,'FACTOWRI',"@workflow.workflow",%mod_dev%,%addr_dev%,%addr_agents_total%,"@logger","@mailer",%mailer_user%]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Facture à gérer }
+        public: true
+    app.admin.factureagerer:
+        class: AppBundle\Admin\FactureAdmin
+        arguments: [~, AppBundle\Entity\Facture, AppBundle:Admin\FactureAdmin,'FACTTOMAN',"@workflow.workflow",%mod_dev%,%addr_dev%,%addr_agents_total%,"@logger","@mailer",%mailer_user%]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Facture à saisir }
+        public: true
+    app.admin.factureagererall:
+        class: AppBundle\Admin\FactureAdmin
+        arguments: [~, AppBundle\Entity\Facture, AppBundle:Admin\FactureAdmin,'FACTTOMANALL',"@workflow.workflow",%mod_dev%,%addr_dev%,%addr_agents_total%,"@logger","@mailer",%mailer_user%]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Facture à saisir }
+        public: true
+    app.admin.factureenlitige:
+        class: AppBundle\Admin\FactureAdmin
+        arguments: [~, AppBundle\Entity\Facture, AppBundle:Admin\FactureAdmin,'FACTINLI',"@workflow.workflow",%mod_dev%,%addr_dev%,%addr_agents_total%,"@logger","@mailer",%mailer_user%]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Facture en litige }
+        public: true
+    app.admin.factureenlitigeall:
+        class: AppBundle\Admin\FactureAdmin
+        arguments: [~, AppBundle\Entity\Facture, AppBundle:Admin\FactureAdmin,'FACTINLIALL',"@workflow.workflow",%mod_dev%,%addr_dev%,%addr_agents_total%,"@logger","@mailer",%mailer_user%]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Facture en litige }
+        public: true
+
+    app.admin.factureasaisirall:
+        class: AppBundle\Admin\FactureAdmin
+        arguments: [~, AppBundle\Entity\Facture, AppBundle:Admin\FactureAdmin,'FACTOWRIALL',"@workflow.workflow",%mod_dev%,%addr_dev%,%addr_agents_total%,"@logger","@mailer",%mailer_user%]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Facture à gérer }
+        public: true
+                
+    app.admin.facturemanuelle:
+        class: AppBundle\Admin\FactureAdmin
+        arguments: [~, AppBundle\Entity\Facture, AppBundle:Admin\FactureAdmin,'INIT',"@workflow.workflow",%mod_dev%,%addr_dev%,%addr_agents_total%,"@logger","@mailer",%mailer_user%]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Saisie manuelle }
+        public: true
+        
+    app.admin.factureaapprouver:
+        class: AppBundle\Admin\FactureAdmin
+        arguments: [~, AppBundle\Entity\Facture, AppBundle:Admin\FactureAdmin,'FACTOAPP',"@workflow.workflow",%mod_dev%,%addr_dev%,%addr_agents_total%,"@logger","@mailer",%mailer_user%]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Facture à approuver }
+        public: true
+
+    app.admin.factureattentebc:
+        class: AppBundle\Admin\FactureAdmin
+        arguments: [~, AppBundle\Entity\Facture, AppBundle:Admin\FactureAdmin,'FACTOWAITBC',"@workflow.workflow",%mod_dev%,%addr_dev%,%addr_agents_total%,"@logger","@mailer",%mailer_user%]
+        tags: 
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Facture en attente de BC }
+        public: true
+
+    app.admin.factureattentebcall:
+        class: AppBundle\Admin\FactureAdmin
+        arguments: [~, AppBundle\Entity\Facture, AppBundle:Admin\FactureAdmin,'FACTOWAITBCALL',"@workflow.workflow",%mod_dev%,%addr_dev%,%addr_agents_total%,"@logger","@mailer",%mailer_user%]
+        tags: 
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Toutes les factures en attente de BC }
+        public: true
+  
+    app.admin.factureaapprouverall:
+        class: AppBundle\Admin\FactureAdmin
+        arguments: [~, AppBundle\Entity\Facture, AppBundle:Admin\FactureAdmin,'FACTOAPPALL',"@workflow.workflow",%mod_dev%,%addr_dev%,%addr_agents_total%,"@logger","@mailer",%mailer_user%]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Toutes les factures à approuver }
+        public: true
+  
+        
+    app.admin.factureavalider:
+        class: AppBundle\Admin\FactureAdmin
+        arguments: [~, AppBundle\Entity\Facture, AppBundle:Admin\FactureAdmin,'FACTOVAL',"@workflow.workflow",%mod_dev%,%addr_dev%,%addr_agents_total%,"@logger","@mailer",%mailer_user%]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Facture à valider }
+        public: true
+
+    app.admin.factureapayer:
+        class: AppBundle\Admin\FactureAdmin
+        arguments: [~, AppBundle\Entity\Facture, AppBundle:Admin\FactureAdmin,'FACTOPAY',"@workflow.workflow",%mod_dev%,%addr_dev%,%addr_agents_total%,"@logger","@mailer",%mailer_user%]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Facture à payer }
+        public: true
+
+    app.admin.factureall:
+        class: AppBundle\Admin\FactureAdmin
+        arguments: [~, AppBundle\Entity\Facture, AppBundle:Admin\FactureAdmin,'ALL',"@workflow.workflow",%mod_dev%,%addr_dev%,%addr_agents_total%,"@logger","@mailer",%mailer_user%]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Toutes les Factures }
+        public: true
+        
+    app.admin.factureman:
+        class: AppBundle\Admin\FactureAdmin
+        arguments: [~, AppBundle\Entity\Facture, AppBundle:Admin\FactureAdmin,'MAN',"@workflow.workflow",%mod_dev%,%addr_dev%,%addr_agents_total%,"@logger","@mailer",%mailer_user%]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Gestion des Factures }
+        public: true
+
+    app.admin.facturemanapprob:
+        class: AppBundle\Admin\FactureAdmin
+        arguments: [~, AppBundle\Entity\Facture, AppBundle:Admin\FactureAdmin,'MANAPPRO',"@workflow.workflow",%mod_dev%,%addr_dev%,%addr_agents_total%,"@logger","@mailer",%mailer_user%]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Gestion des Factures en attente d'approbation }
+        public: true
+        
+ 
+    app.admin.facturemanchgbc:
+        class: AppBundle\Admin\FactureAdmin
+        arguments: [~, AppBundle\Entity\Facture, AppBundle:Admin\FactureAdmin,'MANCHBC',"@workflow.workflow",%mod_dev%,%addr_dev%,%addr_agents_total%,"@logger","@mailer",%mailer_user%]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Gestion des Factures en attent de  de B.C. }
+        public: true
+        
+        
+    app.admin.facturemanstatut:
+        class: AppBundle\Admin\FactureAdmin
+        arguments: [~, AppBundle\Entity\Facture, AppBundle:Admin\FactureAdmin,'MANSTAT',"@workflow.workflow",%mod_dev%,%addr_dev%,%addr_agents_total%,"@logger","@mailer",%mailer_user%]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Gestion des Factures }
+        public: true
+        
+    app.admin.facturemanbc:
+        class: AppBundle\Admin\FactureAdmin
+        arguments: [~, AppBundle\Entity\Facture, AppBundle:Admin\FactureAdmin,'MANBC',"@workflow.workflow",%mod_dev%,%addr_dev%,%addr_agents_total%,"@logger","@mailer",%mailer_user%]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Gestion des Factures }
+        public: true
+
+    app.admin.facturemanapp:
+        class: AppBundle\Admin\FactureAdmin
+        arguments: [~, AppBundle\Entity\Facture, AppBundle:Admin\FactureAdmin,'MANAPP',"@workflow.workflow",%mod_dev%,%addr_dev%,%addr_agents_total%,"@logger","@mailer",%mailer_user%]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Gestion des Factures }
+        public: true
+                              
+    app.admin.factureadelete:
+        class: AppBundle\Admin\FactureAdmin
+        arguments: [~, AppBundle\Entity\Facture, AppBundle:Admin\FactureAdmin,'DEL',"@workflow.workflow",%mod_dev%,%addr_dev%,%addr_agents_total%,"@logger","@mailer",%mailer_user%]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Toutes les Factures A supprimer}
+        public: true

@@ -1,0 +1,8 @@
+{% if object.fields is not empty %} {#Fields#}
+    {% for field in object.fields %}
+        <div class="field">
+            <h2>{{ field.name }}</h2>
+            {{ field.value|raw }}
+        </div>
+    {% endfor %}
+{% endif %}

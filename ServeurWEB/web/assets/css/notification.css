@@ -1,0 +1,73 @@
+
+
+
+.glyphicon-bell {
+
+  font-size: 1.5rem;
+}
+
+.notifications {
+  min-width: 420px;
+}
+
+.notifications-wrapper {
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  max-height: 250px;
+}
+
+.menu-title {
+  color: #ff7788;
+  font-size: 1.5rem;
+  display: inline-block;
+}
+
+.glyphicon-circle-arrow-right {
+  margin-left: 10px;
+}
+
+
+.notification-heading, .notification-footer {
+  padding: 2px 10px;
+}
+
+
+.dropdown-menu.divider {
+  margin: 5px 0;
+}
+
+.item-title {
+
+  font-size: 1.3rem;
+  color: #000;
+
+}
+
+.notifications a.content {
+  text-decoration: none;
+  background: #ccc;
+
+}
+
+.notification-item {
+  padding: 10px;
+  margin: 5px;
+  background: #ccc;
+  border-radius: 4px;
+}
+
+.num {
+  position: absolute;
+  top: 0;
+  right: -5px;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #dd4b39 none repeat scroll 0 0;
+  color: #fff;
+  line-height: 25px;
+  font-family: sans-serif;
+  text-align: center;
+}
+

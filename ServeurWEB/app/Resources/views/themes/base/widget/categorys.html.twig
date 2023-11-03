@@ -1,0 +1,9 @@
+<h4>{{ 'taxo.categorys'|trans }}</h4>
+<ul class="nav nav-pills nav-stacked categorys">
+    {% for category in categorys %}
+        {% if category.published %}
+        <li><a href="{{ path('cms_taxo_show', {'_locale':app.request.locale, 'type': category.type, 'slug': category.slug}) }}">{{ category }}</a></li>
+        {% endif %}
+    {% endfor %}
+</ul>
+<hr>

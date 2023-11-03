@@ -1,0 +1,28 @@
+$color1: white;
+$color2: black;
+$color3: #3C8DBC;
+$color4: #6C7197;
+$color5: #739211;
+$color6: #D92405;
+$color7: #3563EB;
+$color8: #EAC124;
+
+$spacer: 5px;
+$spacer-radius: 5px;
+$spacer-border: 1px;
+$amount: 10%;
+$opacity: 0.85;
+$shadow: 2px;
+
+$modal-xl: 1200px !default;
+
+$colors: (
+        'c-1': $color1,
+        'c-2': $color2,
+        'c-3': $color3,
+        'c-4': $color4,
+        'c-5': $color5,
+        'c-6': $color6,
+        'c-7': $color7,
+        'c-8': $color8
+);

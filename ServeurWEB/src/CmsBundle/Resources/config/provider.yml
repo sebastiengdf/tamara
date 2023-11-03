@@ -1,0 +1,15 @@
+services:
+    cms.provider.knp:
+        class: CmsBundle\Provider\KnpProvider
+        arguments:
+            - '@cms.manager.link'
+            - '@cms.manager.menu'
+            - '@cms_nav.nodeloader'
+        tags:
+            - { name: knp_menu.provider }
+
+    cms.provider.link:
+        class: CmsBundle\Provider\LinkProvider
+        arguments:
+            - '@cms.manager.menu'
+            - '@cms.manager.link'

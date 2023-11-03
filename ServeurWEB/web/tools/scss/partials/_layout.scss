@@ -1,0 +1,59 @@
+.skin-black {
+  .main-header {
+    .navbar {
+      @extend .bgc-3;
+      .nav > li > a {
+        @extend .c-1;
+        &:hover {
+          @extend .bgc-3d;
+        }
+      }
+      > .sidebar-toggle {
+        @extend .c-1;
+        &:hover {
+          @extend .bgc-3d;
+        }
+      }
+    }
+    > .logo {
+      @extend .bgc-3d, .c-1;
+    }
+  }
+}
+
+.navbar-custom-menu {
+  .nav {
+    margin-right: 15px;
+    @media screen and (max-width: 767px) {
+      margin-right: 0px;
+    }
+  }
+}
+
+.navbar-static-top {
+  .navbar-left {
+    display: inline-block;
+  }
+}
+
+.user-menu {
+  a {
+    &:hover {
+      @extend .bgc-3d;
+      span {
+        @extend .c-1;
+      }
+    }
+  }
+}
+
+.vich-image {
+  img {
+    max-width: 150px !important;
+    margin-right: 20px;
+  }
+}
+
+.skin-black .main-header .navbar .nav>li>a:hover, .skin-black .main-header .navbar .nav>li>a:active, .skin-black .main-header .navbar .nav>li>a:focus, .skin-black .main-header .navbar .nav .open>a, .skin-black .main-header .navbar .nav .open>a:hover, .skin-black .main-header .navbar .nav .open>a:focus, .skin-black .main-header .navbar .nav>.active>a {
+  @extend .bgc-3d;
+}

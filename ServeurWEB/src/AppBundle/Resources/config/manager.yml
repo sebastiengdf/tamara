@@ -1,0 +1,14 @@
+services:
+    app.manager.facture:
+        class: AppBundle\Manager\FactureManager
+        arguments:
+            - '@doctrine.orm.entity_manager'
+        calls:
+            - [setRepository, [ 'AppBundle:Facture' ]]
+
+    app.manager.fournisseur:
+        class: AppBundle\Manager\FournisseurManager
+        arguments:
+            - '@doctrine.orm.entity_manager'
+        calls:
+            - [setRepository, [ 'AppBundle:Fournisseur' ]]

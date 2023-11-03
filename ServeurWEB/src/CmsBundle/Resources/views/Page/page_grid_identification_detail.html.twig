@@ -1,0 +1,155 @@
+<div class="col-md-2">
+    <div class="box">
+        <div class="box-header">
+            <h3 class="box-title">Publication</h3>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body no-padding">
+            <table class="table">
+                <tbody>
+                <tr>
+                    <th>État</th>
+                    <td>
+                        {% set label = (object.published) ? '<small class="label bg-green">Oui</small>' : '<small class="label bg-red">Non</small>' %}
+                        {{ label|raw }}
+                    </td>
+                </tr>
+                <tr>
+                    <th>Date</th>
+                    <td>{{ object.publishedStart|date('d/m/Y H:i:s') }}</td>
+                </tr>
+                </tbody>
+            </table>
+            {#<button class="btn btn-primary btn-block quick-edit mt-1" data-page="{{ object.id }}">Editer</button>#}
+        </div>
+        <!-- /.box-body -->
+    </div>
+</div>
+<div class="col-md-2">
+    <div class="box">
+        <div class="box-header">
+            <h3 class="box-title">Propriété</h3>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body no-padding">
+            <table class="table">
+                <tbody>
+                <tr>
+                    <th>Dossier</th>
+                    <td>
+                        {% if object.folder %}
+                            {{ object.folder.slug }}
+                        {% endif %}
+                    </td>
+                </tr>
+                <tr>
+                    <th>Layout</th>
+                    <td>{{ object.layout }}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <!-- /.box-body -->
+    </div>
+</div>
+<div class="col-md-2">
+    <div class="box">
+        <div class="box-header">
+            <h3 class="box-title">Date</h3>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body no-padding">
+
+            <table class="table">
+                <tbody>
+                <tr>
+                    <th>Créat.</th>
+                    <td>{{ object.created|date('d/m/Y H:i:s') }}</td>
+                </tr>
+                <tr>
+                    <th>Modif.</th>
+                    <td>{{ object.updated|date('d/m/Y H:i:s') }}</td>
+                </tr>
+                <tr></tr>
+                </tbody>
+            </table>
+        </div>
+        <!-- /.box-body -->
+    </div>
+</div>
+<div class="col-md-3">
+    <div class="box">
+        <div class="box-header">
+            <h3 class="box-title">Cache / Restriction</h3>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body no-padding">
+
+            <table class="table">
+                <tbody>
+                <tr>
+                    <th>Cache</th>
+                    <td>
+                        {% set label = (object.cache) ? '<small class="label bg-green">Oui</small>' : '<small class="label bg-red">Non</small>' %}
+                        {{ label|raw }}
+                        {% if object.cache %}
+                            ({{ object.cacheTime }})
+                        {% endif %}
+                    </td>
+                </tr>
+                <tr>
+                    <th>Restriction</th>
+                    <td>
+                        {% set label = (object.privateAccess) ? '<small class="label bg-green">Oui</small>' : '<small class="label bg-red">Non</small>' %}
+                        {{ label|raw }}<br/>
+                        {% for group in object.allowedGroups %}
+                            <span class="badge bg-yellow">{{ group }}</span>
+                        {% endfor %}
+
+                    </td>
+                </tr>
+                <tr></tr>
+                </tbody>
+            </table>
+        </div>
+        <!-- /.box-body -->
+    </div>
+</div>
+<div class="col-md-3">
+    <div class="box">
+        <div class="box-header">
+            <h3 class="box-title">Marketing</h3>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body no-padding">
+
+            <table class="table">
+                <tbody>
+                <tr>
+                    <th>Visite</th>
+                    <td><span class="badge bg-yellow">{{ object.count }}</span></td>
+                </tr>
+                <tr>
+                    <th>Title</th>
+                    <td>
+                        {{ object.title }}
+                    </td>
+                </tr>
+                <tr>
+                    <th>H1</th>
+                    <td>
+                        {{ object.H1 }}
+                    </td>
+                </tr>
+                <tr>
+                    <th>Description</th>
+                    <td>
+                        {{ object.metaDescription }}
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <!-- /.box-body -->
+    </div>
+</div>

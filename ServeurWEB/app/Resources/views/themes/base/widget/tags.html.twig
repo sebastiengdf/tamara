@@ -1,0 +1,7 @@
+<h4>{{ 'taxo.tags'|trans }}</h4>
+{% for tag in tags %}
+    {% if tag.published %}
+        <a href="{{ path('cms_taxo_show', {'_locale':app.request.locale, 'type': tag.type, 'slug': tag.slug}) }}" class="btn btn-sm btn-default">{{ tag }}</a>
+    {% endif %}
+{% endfor %}
+<hr>

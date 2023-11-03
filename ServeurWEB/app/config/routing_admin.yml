@@ -1,0 +1,14 @@
+admin:
+    resource: "@SonataAdminBundle/Resources/config/routing/sonata_admin.xml"
+
+_sonata_admin:
+    resource: .
+    type: sonata_admin
+
+sonata_media_pixlr:
+    resource: '@SonataMediaBundle/Resources/config/routing/pixlr.xml'
+    prefix:   /media
+
+admin.core:
+    resource: "@CoreBundle/Controller/Admin/"
+    type:     annotation

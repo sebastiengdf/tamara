@@ -1,0 +1,7 @@
+{% if object.pictures is not empty %} {# pictures #}
+    {% for picture in object.pictures %}
+        {% if picture.media is not empty %}
+            <img src="{% path picture.media, 'thumb' %}" alt="{{ alt(picture.media) }}" class="img-responsive">
+        {% endif %}
+    {% endfor %}
+{% endif %}

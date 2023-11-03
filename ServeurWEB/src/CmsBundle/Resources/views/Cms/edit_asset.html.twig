@@ -1,0 +1,54 @@
+<div class="box box-primary">
+    <div class="box-header with-border">
+        <h3 class="box-title">Intégration</h3>
+
+        <div class="box-tools pull-right">
+            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+            </button>
+        </div>
+        <!-- /.box-tools -->
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body">
+        {% block edit_asset %}
+            {% if form.layout is defined %}
+                {{ form_row(form.layout) }}
+            {% endif %}
+            {% if form.stylesheets is defined %}
+                {{ form_row(form.stylesheets) }}
+            {% endif %}
+            {% if form.javascripts is defined %}
+                {{ form_row(form.javascripts) }}
+            {% endif %}
+        {% endblock edit_asset %}
+    </div>
+    <!-- /.box-body -->
+</div>
+
+
+<script>
+    $(function () {
+
+        CodeMirror.fromTextArea($('textarea[id$="stylesheets"]')[0], {
+            theme: 'monokai',
+            mode: 'css',
+            lineNumbers: true,
+            matchBrackets: true,
+            autoCloseBrackets: true,
+            autoCloseTags: true,
+            htmlMode: true,
+        });
+
+        CodeMirror.fromTextArea($('textarea[id$="javascripts"]')[0], {
+            theme: 'monokai',
+            mode: 'javascript',
+            lineNumbers: true,
+            matchBrackets: true,
+            autoCloseBrackets: true,
+            autoCloseTags: true,
+            htmlMode: true,
+        });
+
+    })
+</script>
+

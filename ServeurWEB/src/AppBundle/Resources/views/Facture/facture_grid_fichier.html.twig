@@ -1,0 +1,6 @@
+{% extends 'SonataAdminBundle:CRUD:base_list_field.html.twig' %}
+
+{% block field %}
+	<a href="{{ asset('uploads/media/') }}{{ object.fichier }}" target="_blankl" class="appearIframe" style="position:relative"><img src="{{ asset('assets/img/pdf-ico.png') }}" alt="Fichier" /></a>
+{% endblock field %}
+

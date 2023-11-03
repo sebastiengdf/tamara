@@ -1,0 +1,37 @@
+$radius: (
+    'tr': 'top-right',
+    'tl': 'top-left',
+    'br': 'bottom-right',
+    'bl': 'bottom-left',
+);
+
+@each $key, $value in $radius {
+  .bd#{$key}rs-0 {border-#{$value}-radius: 0px !important;};
+  .bd#{$key}rs-1 {border-#{$value}-radius: $spacer-radius*1 !important;};
+  .bd#{$key}rs-2 {border-#{$value}-radius: $spacer-radius*2 !important;};
+  .bd#{$key}rs-3 {border-#{$value}-radius: $spacer-radius*3 !important;};
+}
+
+@for $i from 0 through 3 {
+  .bdrs-#{$i} {border-radius: $spacer-radius*$i !important;}
+}
+
+@mixin bdrs($orientation, $taille: 1) {
+  @if $orientation == 'a' {
+    border-radius: #{$taille}px !important;
+  } @else if $orientation == 'l' {
+    border-top-left-radius: #{$taille}px !important;
+    border-bottom-left-radius: #{$taille}px !important;
+  } @else if $orientation == 'r' {
+    border-top-right-radius: #{$taille}px !important;
+    border-bottom-right-radius: #{$taille}px !important;
+  } @else if $orientation == 't' {
+    border-top-right-radius: #{$taille}px !important;
+    border-top-left-radius: #{$taille}px !important;
+  } @else if $orientation == 'b' {
+    border-bottom-left-radius: #{$taille}px !important;
+    border-bottom-right-radius: #{$taille}px !important;
+  } @else {
+    border-#{map_get($radius, $orientation)}-radius: #{$taille}px !important;
+  }
+}

@@ -1,0 +1,48 @@
+{% extends '@Cms/Post/post_edit.html.twig' %}
+
+{% block post_edit_right_top %}
+    <div class="box box-primary">
+        <div class="box-header with-border">
+            <h3 class="box-title">Lien</h3>
+
+            <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+            </div>
+            <!-- /.box-tools -->
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+            {{ form_row(form.cover) }}
+            {{ form_row(form.background) }}
+            {{ form_row(form.ctaText) }}
+            {{ form_row(form.ctaUrl) }}
+        </div>
+        <!-- /.box-body -->
+    </div>
+    <div class="box box-primary">
+        <div class="box-header with-border">
+            <h3 class="box-title">Collection</h3>
+
+            <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+            </div>
+            <!-- /.box-tools -->
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+            {{ form_row(form.collection) }}
+        </div>
+        <!-- /.box-body -->
+    </div>
+{% endblock post_edit_right_top %}
+
+{% block post_edit_right %}
+    {% include '@Cms/Post/post_edit_property.html.twig' %}
+    {% include '@Cms/Cms/edit_publish.html.twig' %}
+    {% include '@Cms/Cms/edit_acces.html.twig' %}
+    {% include '@Cms/Cms/edit_cache.html.twig' %}
+    {% include '@Cms/Cms/edit_date.html.twig' %}
+    {% include '@Cms/Cms/edit_asset.html.twig' %}
+{% endblock post_edit_right %}

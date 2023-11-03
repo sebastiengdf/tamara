@@ -1,0 +1,14 @@
+{% extends 'SonataAdminBundle:CRUD:edit.html.twig' %}
+
+{% block form %}
+    {% include '@Core/admin/form_start.html.twig' %}
+	
+	{% if object.fichier is not null %}
+		<a href="{{ asset('uploads/media/') }}{{ object.fichier }}" target="_blank"  id="pdfSource" ><img src="{{ asset('assets/img/pdf-ico.png') }}" alt="Fichier" /> Télécharger</a>
+	{% endif %}
+
+    {% include '@Core/admin/form_end.html.twig' %}
+
+{% endblock form %}
+
+

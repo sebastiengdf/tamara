@@ -1,0 +1,8 @@
+parameters:
+    imap_mailer_host: imap.gmail.com
+    imap_ssl: true
+    imap_timout: 2000
+    imap_uidReferencing: true
+    imap_nbmailMax: 10
+    filemedia: /uploads/media
+    imap_isredirection: false

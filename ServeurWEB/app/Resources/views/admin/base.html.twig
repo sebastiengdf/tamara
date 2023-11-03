@@ -1,0 +1,92 @@
+{% extends 'SonataAdminBundle::standard_layout.html.twig' %}
+
+{% set config = getConfig() %} {# init config #}
+{% set variables = vars() %} {# init variable #}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('assets/vendor/datatables/media/css/dataTables.bootstrap.min.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('assets/css/min/admin.min.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('bundles/sonatatranslation/css/sonata-translation.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/vendor/toastr/toastr.min.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('assets/css/notification.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('assets/css/modal_tchat.css') }}"/>
+
+{% endblock stylesheets %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('assets/vendor/datatables/media/js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/datatables/media/js/dataTables.bootstrap.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/chart.js/dist/Chart.min.js') }}"></script>
+    <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+    <script src="{{ asset('bundles/core/js/admin.js') }}"></script>
+    <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
+    <script src="{{ asset('assets/vendor/toastr/toastr.min.js') }}"></script>
+
+{% endblock javascripts %}
+
+{% block logo %}
+    <a class="logo" href="{{ path('sonata_admin_dashboard') }}">
+        <img src="{{ asset('favicon.ico') }}" alt="{{ admin_pool.title }}">
+        <span>{{ config.name }}</span>
+    </a>
+{% endblock logo %}
+
+{% block sonata_breadcrumb %}
+    {{ include(':admin:menu_list.html.twig') }}
+    {{ include(':admin:menu_add.html.twig') }}
+    <ul class="nav navbar-nav">
+        {% block top_result %}
+        {% endblock %}
+    </ul>
+
+{% endblock %}
+
+{% block sonata_top_nav_menu %}
+    <div class="navbar-custom-menu navbar-right">
+
+        <ul class="nav navbar-nav">
+            {{ include('@App/Conversation/notification.html.twig') }}
+
+        </ul>
+        <ul class="nav navbar-nav">
+
+            {{ include(':admin:menu_user.html.twig') }}
+            {% block top_result_right %}
+            {% endblock %}
+        </ul>
+    </div>
+
+{% endblock %}
+
+{% block tab_menu_navbar_header %}
+    {% if admin is defined %}
+        <h2 class="section-title">
+            {% block sectionTitle %}
+                {{ admin.label }}
+            {% endblock %}
+        </h2>
+    {% endif %}
+
+
+{% endblock %}
+
+{% block sonata_wrapper %}
+    {{ parent() }}
+    <!-- Modal -->
+
+    {{ include(':admin:admin_modal.html.twig') }}
+    {{ include(':admin:historique_modal.html.twig') }}
+
+{% endblock sonata_wrapper %}
+
+{% block sonata_sidebar_search %}{% endblock sonata_sidebar_search %}
+{% block side_bar_nav %}
+
+    {{ include(':admin:menu_left.html.twig') }}
+    {{ include(':admin:notification_update.html.twig') }}
+
+
+{% endblock side_bar_nav %}
+{% block side_bar_after_nav %}{% endblock side_bar_after_nav %}

@@ -1,0 +1,28 @@
+services:
+
+    cms.twig.locale_switcher:
+        class: CmsBundle\Twig\LocaleSwitcher
+        arguments: [ '@router',  '@twig.extension.assets' ]
+        tags:
+            - { name: twig.extension }
+        calls:
+            - [setLocales, [%locales%] ]
+
+
+    cms.twig.show_menu:
+        class: CmsBundle\Twig\ShowMenu
+        arguments: [ '@doctrine.orm.entity_manager', '@twig', '@cms.provider.knp' ]
+        tags:
+            - { name: twig.extension }
+
+
+    cms.twig.image:
+        class:     CmsBundle\Twig\CmsImageFunction
+        tags:
+            -  { name: twig.extension }
+
+    cms.getConfigCms:
+        class: CmsBundle\Twig\GetConfigCms
+        arguments: ["@doctrine.orm.entity_manager"]
+        tags:
+            - { name: twig.extension }

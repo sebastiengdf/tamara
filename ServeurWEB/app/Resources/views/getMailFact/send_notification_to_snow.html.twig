@@ -1,0 +1,27 @@
+<!-- send_notification_to_snow.html.twig -->
+{{ facture.centrecout }} / {{ facture.numCompteComptable }}<br>
+{{ facture.fournisseur.code }}<br>
+{{ facture.montantTtc }}<br>
+{{ facture.tva }}<br>
+
+
+{% if facture.affactureur is defined %}
+	affactureur: {{ facture.affactureur.name }} <br>
+{% endif %}
+
+
+{% if bonsdecommandes is defined %}
+	Bon{% if bonsdecommandes | length>1 %}s{% endif %} de commande:<br>
+    {% for bc in bonsdecommandes %}
+			{{ bc.name }} <br>
+    {% endfor %}
+{% endif %}
+
+
+
+{% if facture.commentaires is defined %}
+	Commentaire{% if facture.commentaires | length>1 %}s{% endif %}:<br>
+    {% for comment in facture.commentaires %}
+			{{  comment.content | striptags| trim | convert_encoding('UTF-8','HTML-ENTITIES') }}<br>
+    {% endfor %}
+{% endif %}

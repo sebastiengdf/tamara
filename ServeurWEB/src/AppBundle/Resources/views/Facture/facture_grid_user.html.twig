@@ -1,0 +1,7 @@
+{% extends 'SonataAdminBundle:CRUD:base_list_field.html.twig' %}
+
+{% block field %}
+	{% if object.affectation is not null %}
+        {{ object.affectation.FirstName }} {{ object.affectation.lastName }}
+    {% endif %}
+{% endblock field %}

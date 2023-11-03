@@ -1,0 +1,26 @@
+{% extends 'SonataAdminBundle:CRUD:edit.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {% include '@Cms/Cms/codemirror_css.html.twig' %}
+{% endblock stylesheets %}
+
+{% block form %}
+    {% include '@Core/admin/form_start.html.twig' %}
+
+    <div class="row">
+        <div class="col-md-9">
+            {% include '@Cms/Cms/edit_content.html.twig' %}
+        </div>
+        <div class="col-md-3">
+            {% include '@Cms/Bloc/bloc_edit_property.html.twig' %}
+        </div>
+    </div>
+
+    {% include '@Core/admin/form_end.html.twig' %}
+{% endblock form %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {% include '@Cms/Cms/codemirror_js.html.twig' %}
+{% endblock javascripts %}

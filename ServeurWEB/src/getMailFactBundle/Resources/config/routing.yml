@@ -1,0 +1,3 @@
+get_mail_fact_homepage:
+    path:     /
+    defaults: { _controller: getMailFactBundle:Default:index }

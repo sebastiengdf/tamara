@@ -1,0 +1,56 @@
+$spacing: (
+        't' : 'top',
+        'b' : 'bottom',
+        'l' : 'left',
+        'r' : 'right',
+);
+
+@each $key, $value in $spacing {
+  .m#{$key}-0{margin-#{$value}: 0 !important};
+  .m#{$key}-1{margin-#{$value}: $spacer !important};
+  .m#{$key}-2{margin-#{$value}: $spacer*2 !important};
+  .m#{$key}-3{margin-#{$value}: $spacer*3 !important};
+  .p#{$key}-0{padding-#{$value}: 0 !important};
+  .p#{$key}-1{padding-#{$value}: $spacer !important};
+  .p#{$key}-2{padding-#{$value}: $spacer*2 !important};
+  .p#{$key}-3{padding-#{$value}: $spacer*3 !important};
+}
+
+@for $i from 0 through 3 {
+  .mx-#{$i} {@extend .ml-#{$i}; @extend .mr-#{$i};}
+  .my-#{$i} {@extend .mt-#{$i}; @extend .mb-#{$i};}
+  .px-#{$i} {@extend .pl-#{$i}; @extend .pr-#{$i};}
+  .py-#{$i} {@extend .pt-#{$i}; @extend .pb-#{$i};}
+  .ma-#{$i} {@extend .mx-#{$i}; @extend .my-#{$i};}
+  .pa-#{$i} {@extend .px-#{$i}; @extend .py-#{$i};}
+}
+
+
+
+@mixin m($orientation, $taille: 1) {
+  @if $orientation == 'a' {
+    margin: #{$taille}px !important;
+  } @else if $orientation == 'x' {
+    margin-left: #{$taille}px !important;
+    margin-right: #{$taille}px !important;
+  } @else if $orientation == 'y' {
+    margin-top: #{$taille}px !important;
+    margin-bottom: #{$taille}px !important;
+  } @else {
+    margin-#{map_get($spacing, $orientation)}: #{$taille}px !important;
+  }
+}
+
+@mixin p($orientation, $taille: 1) {
+  @if $orientation == 'a' {
+    padding: #{$taille}px !important;
+  } @else if $orientation == 'x' {
+    padding-left: #{$taille}px !important;
+    padding-right: #{$taille}px !important;
+  } @else if $orientation == 'y' {
+    padding-top: #{$taille}px !important;
+    padding-bottom: #{$taille}px !important;
+  } @else {
+    padding-#{map_get($spacing, $orientation)}: #{$taille}px !important;
+  }
+}

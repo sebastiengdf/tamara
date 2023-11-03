@@ -1,0 +1,10 @@
+vich_uploader:
+    db_driver: orm
+    mappings:
+        media:
+            uri_prefix:         uploads/media
+            upload_destination: '%kernel.root_dir%/../web/uploads/media'
+            inject_on_load:     false
+            delete_on_update:   false
+            delete_on_remove:   true
+            namer: vich_uploader.namer_origname

@@ -1,0 +1,16 @@
+# This file is auto-generated during the composer install
+parameters:
+    database_host: bddtamara
+    database_port: 3307
+    database_name: totalinvoicedbtest2
+    database_user: root
+    database_password: Boss132
+    mailer_transport: gmail
+    mailer_host: smtp.gmail.com
+    mailer_user: invoices.tamara@gmail.com
+    mailer_password: t1o2t3a4l5
+    mailer_port: 465
+    secret: ThisTokenIsNotSoSecretChangeIt
+    default_timeout_notification: 30000
+    default_timeout_modal_update: 5000
+    default_timeout_update_lastlogin : 4

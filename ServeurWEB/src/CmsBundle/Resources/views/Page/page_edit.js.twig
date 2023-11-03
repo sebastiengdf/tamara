@@ -1,0 +1,32 @@
+$(function () {
+
+    {#Remplissage des champs Title et H1 en direct#}
+    $('input[id$="name"]').on('change keyup', function () {
+        var self = $(this);
+        $('input[id$="title"]').val(self.val());
+        $('input[id$="H1"]').val(self.val());
+    });
+
+    {#Gestion du switcher de builder#}
+    $('#builder-switch').on('click', function (event) {
+        event.preventDefault();
+        var self = $(this);
+        var data = {
+            'show': self.data('show'),
+            'page': self.data('page')
+        };
+        $.ajax({
+            type: 'PUT',
+            url: Routing.generate('page_ajax_admin_switch_builder', data),
+            dataType: 'json'
+        }).success(function (json) {
+            if (json['show']) {
+                self.addClass('bg-yellow').removeClass('bg-purple').data('show', 0).html('<i class="fa fa-file">&nbsp;</i>Mode classique');
+            } else {
+                self.addClass('bg-purple').removeClass('bg-yellow').data('show', 1).html('<i class="fa fa-gears">&nbsp;</i>Mode builder');
+            }
+            $('#content').html(json['content']);
+        });
+    });
+
+});

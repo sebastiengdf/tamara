@@ -1,0 +1,10 @@
+<ul class="sidebar-menu">
+	<li><a href="{{ path('sonata_admin_dashboard') }}"><i class="fa fa-tachometer"></i> Accueil</a></li>
+    {% include ':admin/menu-left:config.html.twig' %}
+    {% include ':admin/menu-left:user.html.twig' %}
+    {% include ':admin/menu-left:reference.html.twig' %}
+    {% include ':admin/menu-left:facture.html.twig' %}
+    {#A desactiver si pas CMS#}
+    {#% include ':admin/menu-left:cms.html.twig' %#}
+    
+</ul>

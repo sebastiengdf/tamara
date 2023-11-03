@@ -1,0 +1,26 @@
+{% extends 'SonataAdminBundle:CRUD:base_list_field.html.twig' %}
+
+{% block field %}
+
+    {% set color = (object.published) ? 'primary' : 'danger' %}
+    <div class="box box-{{ color }}">
+        <div class="box-header with-border">
+            <h3 class="box-title"><a href="{{ admin.generateObjectUrl('edit', object) }}">{{ object.name }}</a></h3>
+
+            <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                <a href="{{ path('cms_page_show', {'_locale': app.request.query.get('tl'), 'pageLink': object.url}) }}" target="_blank" class="btn btn-box-tool"><i class="fa fa-eye"></i></a>
+            </div>
+            <!-- /.box-tools -->
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+            <div class="row" id="identification_detail_{{ object.id }}">
+                {% include '@Cms/Page/page_grid_identification_detail.html.twig' %}
+            </div>
+        </div>
+        <!-- /.box-body -->
+    </div>
+
+
+{% endblock %}

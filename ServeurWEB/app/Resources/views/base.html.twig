@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+{% block htmlDoctype %}
+<html lang="{{ app.request.locale }}">
+{% endblock %}
+<head>
+    {% set variables = vars() %} {# init variables #}
+    {% set config = getConfig() %} {# init config #}
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %} | {{ config.name }}{% endblock %}</title>
+    <meta name="description" content="{% block metaDescription %}{% endblock %}"/> {#metaDescription#}
+    <meta name="keywords" content="{% block metaKeyword %}{% endblock %}"/> {#metaKeyword#}
+    {% block otherMeta %}{% endblock %}
+    {% block stylesheets %}{% include ':partials:stylesheets.html.twig' %}{% endblock %}
+    {% block javascriptsTop %}{% endblock %}
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+</head>
+<body>
+{% block header %}{% include ':partials:header.html.twig' %}{% endblock %}
+{% block layout %}{% endblock %}
+{% block footer %}{% include ':partials:footer.html.twig' %}{% endblock %}
+{% block javascripts %}{% include ':partials:javascripts.html.twig' %}{% endblock %}
+</body>
+</html>

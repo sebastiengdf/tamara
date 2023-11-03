@@ -1,0 +1,63 @@
+{% extends ':admin:base_edit.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {% include '@Cms/Cms/codemirror_css.html.twig' %}
+    <style>
+        {% include '@Cms/Post/post_edit.css.twig' %}
+    </style>
+{% endblock stylesheets %}
+
+{% block top_result %}
+    {% if object.id is not null %}
+        {% set locale = (app.request.query.get('tl') is not null) ? app.request.query.get('tl') : locale %}
+        {% if object.slug %}
+            <ul class="nav navbar-nav hidden-xs">
+                <li>
+                    <a class="bg-green" target="_blank" href="{{ path('cms_post_show', {'_locale': locale, 'type': object.type, 'slug': object.slug}) }}">
+                        <i class="fa fa-eye"></i>&nbsp;Voir
+                    </a>
+                </li>
+            </ul>
+        {% endif %}
+    {% endif %}
+{% endblock top_result %}
+
+{% block form %}
+    {% include '@Core/admin/form_start.html.twig' %}
+
+    <div class="row">
+        <div class="col-md-9" id="left-side">
+            {% block post_edit_left_top %}{% endblock %}
+            {% block post_edit_left %}
+                {% include '@Cms/Cms/edit_content_noscript.html.twig' %}
+                {% include '@Cms/Cms/edit_seo.html.twig' %}
+                {% include '@Cms/Cms/edit_media.html.twig' %}
+            {% endblock post_edit_left %}
+            {% block post_edit_left_bottom %}{% endblock %}
+        </div>
+        <div class="col-md-3" id="right-side">
+            {% block post_edit_right_top %}{% endblock %}
+            {% block post_edit_right %}
+                {% include '@Cms/Cms/edit_cover.html.twig' %}
+                {% include '@Cms/Post/post_edit_property.html.twig' %}
+                {% include '@Cms/Cms/edit_publish.html.twig' %}
+                {% include '@Cms/Cms/edit_acces.html.twig' %}
+                {% include '@Cms/Cms/edit_cache.html.twig' %}
+                {% include '@Cms/Cms/edit_date.html.twig' %}
+                {% include '@Cms/Cms/edit_asset.html.twig' %}
+            {% endblock post_edit_right %}
+            {% block post_edit_right_bottom %}{% endblock %}
+        </div>
+    </div>
+
+    {% include '@Core/admin/form_end.html.twig' %}
+{% endblock form %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {% include '@Cms/Cms/codemirror_js.html.twig' %}
+    <script>
+        {% include '@Cms/Post/post_edit.js.twig' %}
+    </script>
+{% endblock javascripts %}

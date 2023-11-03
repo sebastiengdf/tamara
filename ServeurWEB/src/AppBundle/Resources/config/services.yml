@@ -1,0 +1,6 @@
+imports:
+    - { resource: admin.yml }
+    - { resource: admin_cpt.yml }
+    - { resource: twig.yml }
+    - { resource: listener.yml }
+    - { resource: manager.yml }

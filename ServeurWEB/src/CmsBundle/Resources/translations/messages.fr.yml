@@ -1,0 +1,30 @@
+core:
+    not_found:
+        langage: Langue introuvable
+    pagination:
+        older: Précédent
+        newer: Suivant
+    auth:
+        login: Connexion
+        register: Inscription
+        profil: Profil
+        logout: Déconnexion
+    no_access: Accès interdit
+
+page:
+    error:
+        not_found: Page introuvable
+
+cpt:
+    error:
+        not_found: Contenu introuvable
+
+post:
+    error:
+        not_found: Post introuvable
+
+taxo:
+    error:
+        not_found: Taxonomie introuvable
+    categorys: Catégories
+    tags: Tags

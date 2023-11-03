@@ -1,0 +1,17 @@
+{
+  "name": "admin-starter",
+  "version": "1.0.0",
+  "authors": [
+    "Digitom Web <web@digitom.fr>"
+  ],
+  "main": "style.css",
+  "license": "MIT",
+  "dependencies": {
+    "datatables": "^1.10.12",
+    "chart.js": "Chart.js#^2.3.0",
+    "bootstrap-sass": "^3.3.7",
+    "font-awesome": "^4.7.0",
+    "codemirror": "^5.25.2",
+    "fancybox": "^3.0.47"
+  }
+}

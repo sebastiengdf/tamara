@@ -1,0 +1,68 @@
+
+.placeholder {
+	outline: 1px dashed #4183C4;
+}
+
+.mjs-nestedSortable-error {
+	background: #fbe3e4;
+	border-color: transparent;
+}
+
+#tree {
+	width: 550px;
+	margin: 0;
+}
+
+ol {
+	padding-left: 25px;
+}
+
+ol.sortable,ol.sortable ol {
+	list-style-type: none;
+}
+
+.main-menu,
+.sortable li > div {
+	//border: 1px solid #FEFEFE;
+	cursor: move;
+	background-color: #F0F0F0;
+	margin: 3px 0;
+	padding: 3px 0;
+
+}
+
+li.mjs-nestedSortable-collapsed.mjs-nestedSortable-hovering div {
+	border-color: #999;
+}
+
+.disclose, .expandEditor {
+	cursor: pointer;
+	width: 20px;
+	display: none;
+}
+
+.sortable li.mjs-nestedSortable-collapsed > ol {
+	display: none;
+}
+
+.sortable li.mjs-nestedSortable-branch > div > .disclose {
+	display: inline-block;
+}
+
+.sortable span.ui-icon {
+	display: inline-block;
+	margin: 0;
+	padding: 0;
+}
+
+
+.menu-row {
+	display: inline-block;
+	padding-left:2px;
+	padding-right:3px;
+}
+
+.menu-row-active,
+.menu-row-_action {
+	float: right;
+}

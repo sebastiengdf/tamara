@@ -1,0 +1,13 @@
+services:
+    app.validator.check_num_saisie:
+        class: AppBundle\Validator\Constraints\CheckNumSaisieValidator
+        tags:
+            - { name: validator.constraint_validator }
+    app.validator.check_valide:
+        class: AppBundle\Validator\Constraints\CheckValideValidator
+        tags:
+            - { name: validator.constraint_validator }
+    app.validator.check_b_c:
+        class: AppBundle\Validator\Constraints\CheckBCValidator
+        tags:
+            - { name: validator.constraint_validator }

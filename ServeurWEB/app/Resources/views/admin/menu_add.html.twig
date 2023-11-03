@@ -1,0 +1,14 @@
+<ul class="nav navbar-nav hidden-xs">
+    <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-plus-square fa-fw"></i>  Ajouter</a>
+        <ul class="dropdown-menu">
+            {% if granted('user', 'user', 'create') %}<li><a href="{{ path('admin_user_user_create') }}"><i class="fa fa-user"></i>Utilisateur</a></li>{% endif %}
+			{% if granted('app', 'fournisseur', 'create') %}<li><a href="{{ path('admin_app_fournisseur_create') }}"><i class="fa fa-address-book-o"></i>Fournisseur</a></li>{% endif %}
+			{% if granted('app', 'centrecout', 'create') %}<li><a href="{{ path('admin_app_centrecout_create') }}"><i class="fa fa-building-o"></i>Centre Coût</a></li>{% endif %}
+			{% if granted('app', 'tva', 'create') %}<li><a href="{{ path('admin_app_tva_create') }}"><i class="fa fa-money"></i>TVA</a></li>{% endif %}
+			{% if pathIsdefined('admin_app_factureenerreur_create') %}
+			{% if granted('app', 'facture', 'create') %}<li><a href="{{ path('admin_app_factureenerreur_create') }}"><i class="fa fa-file-excel-o"></i>Facture</a></li>{% endif %}
+			{% endif %}
+        </ul>
+    </li>
+</ul>

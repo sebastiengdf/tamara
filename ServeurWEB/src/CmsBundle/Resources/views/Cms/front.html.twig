@@ -1,0 +1,25 @@
+{% extends layout %}
+
+{% block title %}{{ object.title }} {{ parent() }}{% endblock title %}
+
+{% block metaDescription %}{{ object.metaDescription }} {{ parent() }}{% endblock metaDescription %}
+
+{% block metaKeyword %}{{ object.metaKeyword }} {{ parent() }}{% endblock metaKeyword %}
+
+{% block otherMeta %}
+    {% if object.noIndex %}<meta name="robots" content="noindex, nofollow">{% endif %}
+    {{ object.otherMeta }} {{ parent() }}
+{% endblock otherMeta %}
+
+{% block stylesheets %}{{ parent() }}{{ include(template_from_string(object.stylesheets)) }}{% endblock stylesheets %}
+
+{% block content_id %}{{ type }}-{{ object.uniqueSlug }}{% endblock content_id %}
+{% block content_class %}{{ type }}{% endblock content_class %}
+
+{% block content %}{% endblock content %}
+
+{% block javascripts %}
+    {% include '@Cms/Cms/front_modal.html.twig' %}
+    {{ parent() }}
+    {{ include(template_from_string(object.javascripts)) }}
+{% endblock javascripts %}

@@ -1,0 +1,7 @@
+{% extends 'SonataAdminBundle:CRUD:base_list_field.html.twig' %}
+
+{% block field %}
+    {% if object.id %}
+        <a href="{{ vich_uploader_asset(object, 'file') }}" class="btn btn-primary"><span class="fa fa-download"></span></a>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,21 @@
+# Put parameters here that don't need to change on each machine where the app is deployed
+# http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
+parameters:
+    locale: fr
+    base_url_admin : admin
+    ckeditor_toolbar: [['Source','Maximize','FontSize', 'Bold', 'Italic','Underline','TextColor', '-', 'NumberedList','BulletedList','-', 'Outdent', 'Indent','-', 'Link', 'Unlink']]
+
+    # Sonata Media options
+    sonata_media.cdn.host:          /uploads/media
+
+    # Sonata Admin Options
+    sonata_admin.title:             Sonata Project
+
+    locales: [fr, en]
+    locales_routing : fr|en
+
+    cpt: [article, item]
+    cpt_routing : article|item
+
+    taxo: [category, tag]
+    taxo_routing : category|tag

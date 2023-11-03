@@ -1,0 +1,118 @@
+services:
+
+    cms.admin.page:
+        class: AppBundle\Admin\CMS\PageAdmin
+        arguments: [~, CmsBundle\Entity\Page, AppBundle:Admin\CMS\PageAdmin]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Page }
+
+    cms.admin.folder:
+        class: CmsBundle\Admin\FolderAdmin
+        arguments: [~, CmsBundle\Entity\Folder, CmsBundle:Admin\FolderAdmin]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Folder }
+
+    cms.admin.layout:
+        class: CmsBundle\Admin\LayoutAdmin
+        arguments: [~, CmsBundle\Entity\Layout, CmsBundle:Admin\LayoutAdmin]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Layout }
+
+    cms.admin.menu:
+        class: CmsBundle\Admin\MenuAdmin
+        arguments: [~, CmsBundle\Entity\Menu, CmsBundle:Admin\MenuAdmin]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Menu }
+
+    cms.admin.menu_type:
+        class: CmsBundle\Admin\MenuTypeAdmin
+        arguments: [~, CmsBundle\Entity\MenuType, CmsBundle:Admin\MenuTypeAdmin]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: MenuType }
+
+    cms.admin.link:
+        class: CmsBundle\Admin\LinkAdmin
+        arguments: [~, CmsBundle\Entity\Link, CmsBundle:Admin\LinkAdmin]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Link }
+
+    cms.admin.attribute:
+        class: CoreBundle\Admin\AttributeAdmin
+        arguments: [~, CmsBundle\Entity\Attribute, CoreBundle:Admin\AttributeAdmin]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Attribute }
+
+    cms.admin.bloc:
+        class: AppBundle\Admin\CMS\BlocAdmin
+        arguments: [~, CmsBundle\Entity\Bloc, AppBundle:Admin\CMS\BlocAdmin]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Bloc }
+
+    cms.admin.picture:
+        class: CmsBundle\Admin\PictureAdmin
+        arguments: [~, CmsBundle\Entity\Picture, CmsBundle:Admin\PictureAdmin]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Picture }
+
+    cms.admin.video:
+        class: CmsBundle\Admin\VideoAdmin
+        arguments: [~, CmsBundle\Entity\Video, CmsBundle:Admin\VideoAdmin]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Video }
+
+    cms.admin.file:
+        class: CmsBundle\Admin\FileAdmin
+        arguments: [~, CmsBundle\Entity\File, CmsBundle:Admin\FileAdmin]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: File }
+
+    cms.admin.field:
+        class: CmsBundle\Admin\FieldAdmin
+        arguments: [~, CmsBundle\Entity\Field, CmsBundle:Admin\FieldAdmin]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Field }
+
+    cms.admin.article:
+        class: CmsBundle\Admin\ArticleAdmin
+        arguments: [~, CmsBundle\Entity\Article, CmsBundle:Admin\ArticleAdmin]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Article }
+
+    cms.admin.category:
+        class: CmsBundle\Admin\CategoryAdmin
+        arguments: [~, CmsBundle\Entity\Category, CmsBundle:Admin\CategoryAdmin]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Category }
+
+    cms.admin.tag:
+        class: CmsBundle\Admin\TagAdmin
+        arguments: [~, CmsBundle\Entity\Tag, CmsBundle:Admin\TagAdmin]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Tag }
+
+    cms.admin.list_seo:
+        class: CmsBundle\Admin\ListSeoAdmin
+        arguments: [~, CmsBundle\Entity\ListSeo, CmsBundle:Admin\ListSeoAdmin]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: ListSeo }
+
+    cms.admin.config:
+        class: CmsBundle\Admin\ConfigAdmin
+        arguments: [~, CmsBundle\Entity\Config, CmsBundle:Admin\ConfigAdmin]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Config }
+
+
+    cms.admin.collection:
+        class: CmsBundle\Admin\CollectionAdmin
+        arguments: [~, CmsBundle\Entity\Collection, CmsBundle:Admin\CollectionAdmin]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Collection }
+        calls:
+            - [addChild, ['@cms.admin.item']]
+
+    cms.admin.item:
+        class: CmsBundle\Admin\ItemAdmin
+        arguments: [~, CmsBundle\Entity\Item, CmsBundle:Admin\ItemAdmin]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Item }

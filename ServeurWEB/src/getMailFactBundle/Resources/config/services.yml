@@ -1,0 +1,27 @@
+imports:
+    - { resource: parameters.yml }
+    
+services:
+#    get_mail_fact.example:
+#        class: getMailFactBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]
+    get_mail_fact.getmailfact:
+          class: getMailFactBundle\GetMailFact\GetMailFact
+          arguments:
+              - "@mailer"
+              - %mailer_user%
+              - %mailer_password%
+              - %imap_mailer_host%
+              - %imap_ssl%
+              - %imap_timout%
+              - %imap_uidReferencing%
+              - "@doctrine"
+              - %sonata_media.cdn.host%
+              - "@logger"
+              - %imap_nbmailMax%
+              - %imap_isredirection%
+              - "@twig"
+              - "@workflow.workflow"
+              - %mod_dev%
+              - %addr_dev%
+              - %addr_agents_total%

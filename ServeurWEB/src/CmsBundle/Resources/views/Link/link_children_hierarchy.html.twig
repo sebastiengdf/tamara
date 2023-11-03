@@ -1,0 +1,25 @@
+<div class="row">
+    <div class="col-md-12 mb-3">
+        <button class="btn btn-primary" id="menu-save"><i class="fa fa-save"></i>&nbsp;Sauvegarder l'ordre</button>
+        <a class="btn btn-success" href="{{ path('nav_admin_create_link', {'menu' : menu.id}) }}">Créer un lien libre</a>
+        <a class="btn btn-success" href="{{ path('admin_cms_link_edit', {'id' : menu.rootLink.id}) }}" target="blank">Editer le root link</a>
+    </div>
+
+    <script>
+        {#Init AJAX URL#}
+        var updateOrderLink = "{{ path('nav_admin_update_order_link') }}";
+        var updatePageName = "{{ path('nav_admin_update_page_name') }}";
+        var rootID = "{{ rootLink.id }}";
+    </script>
+
+    <div class="col-md-3">{{ render(controller('CmsBundle:Admin/Menu:createItem', {'menu' : menu.id})) }}</div>
+    <div class="table-tbody col-md-9">
+        {{ nodes|raw }}
+    </div>
+</div>
+
+
+
+
+
+

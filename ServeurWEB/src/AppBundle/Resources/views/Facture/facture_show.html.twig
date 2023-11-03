@@ -1,0 +1,97 @@
+{% extends 'SonataAdminBundle:CRUD:show.html.twig' %}
+
+
+
+{% block show_groups %}
+	{% if    app.request.get('id') is defined and    app.request.get('id')is not empty %}
+		{% include '@App/Conversation/modal_tchat.html.twig' %}
+	{% endif %}
+	<div class="row">
+		<div class="col-md-4">
+		{% block field_row %}
+            {% for code in groups %}
+                {% set show_group = admin.showgroups[code] %}
+				
+                <div class="{{ show_group.class|default('col-md-12') }} {{ no_padding|default(false) ? 'nopadding' }}">
+                    <div class="{{ show_group.box_class }}">
+                        <div class="box-header">
+                            <h4 class="box-title">
+                                {% block show_title %}
+                                {% if show_group.label is defined  %}
+                                    {{ show_group.label|trans({}, show_group.translation_domain|default(admin.translationDomain)) }}
+                                {% endif %}
+                                {% endblock %}
+                                
+                            </h4>
+                        </div>
+                        <div class="box-body table-responsive no-padding">
+                            <table class="table">
+                                <tbody>
+                                {% for field_name in show_group.fields %}
+                                	{% if elements[field_name].name == 'fichier' %}
+                                		<div id="pdfLink">
+										<a href="{{ asset('uploads/media/') }}{{ object.fichier }}" style="display:none">Télécharger</a>
+										</div>
+									{% elseif elements[field_name].name == 'createur' %}
+                                		<th>Createur</th>
+										<td>{{ object.createur }}</td>
+									{% elseif elements[field_name].name == 'affectation' %}
+                                		<th>Affectation</th>
+										<td>{{ object.affectation }}</td>
+									{% else %}
+										{% block show_field %}
+											<tr class="sonata-ba-view-container">
+												{% if elements[field_name] is defined %}
+													{{ elements[field_name]|render_view_element(object)}}
+												{% endif %}
+											</tr>
+										{% endblock %}
+									{% endif %}
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endblock %}
+        </div>
+		<div class="col-md-8" id="pdfRenderer">
+			<iframe src="" width="100%" height="100%" style="height:100%; display:block;min-height: 1000px;" >
+		</div>		
+    </div>
+{% endblock %}
+
+
+{% block actions %}
+	{% set groupeComptable = 'test' %}
+	{% for gou in app.user.groups %}
+		{% if gou.name == 'Comptable' %}
+			{% set groupeComptable = gou.name %}
+		{% endif %}
+	{% endfor %}
+	{% if not (groupeComptable == 'Comptable' and object.checkvalide) %}
+		<li>{% include 'SonataAdminBundle:Button:edit_button.html.twig' %}</li>
+	{% endif %}
+    
+    <li>{% include 'SonataAdminBundle:Button:history_button.html.twig' %}</li>
+    <li>{% include 'SonataAdminBundle:Button:list_button.html.twig' %}</li>
+    <li>{% include 'SonataAdminBundle:Button:create_button.html.twig' %}</li>
+{% endblock %}
+
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+		jQuery(document).ready(function() {
+			if( $('body').find('#pdfLink > a').length)
+			{
+				var link = $('#pdfLink > a').attr("href");
+				$('#pdfRenderer').html('<iframe src="' + link + '" width="100%" height="100%" style="height:100%; display:block;min-height: 1000px; margin-bottom: 20px;" />');
+			}
+			
+			$('.tobemoved .sonata-ba-view-container th').remove();
+			
+		});
+	</script>
+{% endblock %}

@@ -1,0 +1,36 @@
+imports:
+    - { resource: parameters.yml }
+    - { resource: security.yml }
+    - { resource: services.yml }
+
+    # FriendOfSymfony Bundles
+    - { resource: config/fos_user.yml }
+
+    # Sonata Core Bundles
+    - { resource: config/sonata_block.yml }
+    - { resource: config/sonata_admin.yml }
+    - { resource: config/sonata_classification.yml }
+    - { resource: config/sonata_media.yml }
+#    - { resource: config/sonata_translation.yml } # A desactiver si pas CMS
+
+    # Config base
+    - { resource: config/parameters.yml }
+    - { resource: config/framework.yml }
+    - { resource: config/twig.yml }
+    - { resource: config/doctrine.yml }
+    - { resource: config/swiftmailer.yml }
+
+    # Autres
+    - { resource: config/stof_doctrine_extensions.yml }
+    - { resource: config/ivory_ck_editor.yml }
+    - { resource: config/vich_uploader.yml }
+    - { resource: config/liip_imagine.yml }
+    - { resource: config/knp_menu.yml }
+    - { resource: config/snow.yml }
+
+    - { resource: "@CoreBundle/Resources/config/services.yml" }
+    - { resource: "@UserBundle/Resources/config/services.yml" }
+#    - { resource: "@CmsBundle/Resources/config/services.yml" } # A desactiver si pas CMS
+    - { resource: "@AppBundle/Resources/config/services.yml" }
+    - { resource: "@getMailFactBundle/Resources/config/services.yml" }
+    - { resource: "@WorkflowBundle/Resources/config/services.yml" }

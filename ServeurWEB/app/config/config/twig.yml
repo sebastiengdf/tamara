@@ -1,0 +1,17 @@
+# Twig Configuration
+twig:
+    debug:            "%kernel.debug%"
+    strict_variables: "%kernel.debug%"
+    form_themes:
+        # other form themes
+        - 'VichUploaderBundle:Form:fields.html.twig'
+        - 'SonataCoreBundle:Form:datepicker.html.twig'
+    globals:
+        timeout_notification: %default_timeout_notification%
+        timeout_modal_update: %default_timeout_modal_update%
+        timeout_update_lastlogin: %default_timeout_update_lastlogin%
+
+        ckeditor_toolbar: %ckeditor_toolbar%
+        locale: %locale%
+        cpts: %cpt%
+        taxos: %taxo%

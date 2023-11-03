@@ -1,0 +1,8 @@
+{% extends 'SonataAdminBundle:CRUD:base_list.html.twig' %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        {% include '@Cms/Cms/list_sortable.js.twig' %}
+    </script>
+{% endblock javascripts %}

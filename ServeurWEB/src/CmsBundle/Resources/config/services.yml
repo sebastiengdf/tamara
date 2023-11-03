@@ -1,0 +1,32 @@
+imports:
+    - { resource: admin.yml }
+    - { resource: event.yml }
+    - { resource: listener.yml }
+    - { resource: manager.yml }
+    - { resource: provider.yml }
+    - { resource: security.yml }
+    - { resource: twig.yml }
+    - { resource: util.yml }
+    - { resource: menu.yml }
+    - { resource: render.yml }
+
+services:
+    cms.twig.extension.loader:
+        class:        Twig_Extension_StringLoader
+        tags:
+             - { name: 'twig.extension' }
+
+    gedmo.listener.translatable:
+        class: Gedmo\Translatable\TranslatableListener
+        tags:
+            - { name: doctrine.event_subscriber, connection: default }
+        calls:
+            - [ setAnnotationReader, [ '@annotation_reader' ] ]
+            - [ setDefaultLocale, [ %locale% ] ]
+            - [ setTranslatableLocale, [ %locale% ] ]
+            - [ setTranslationFallback, [ true ] ]
+            - [ setPersistDefaultLocaleTranslation, [ true ] ]
+
+    cms.sitemap:
+        class: CmsBundle\Sitemap\Sitemap
+        arguments: ['@service_container']

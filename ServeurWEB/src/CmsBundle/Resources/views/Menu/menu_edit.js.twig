@@ -1,0 +1,38 @@
+$(function () {
+
+    var ns = $('.sortable').nestedSortable({
+        forcePlaceholderSize: true,
+        handle: 'div',
+        helper: 'clone',
+        items: 'li',
+        opacity: .6,
+        placeholder: 'placeholder',
+        revert: 250,
+        tabSize: 25,
+        tolerance: 'pointer',
+        toleranceElement: '> div',
+        isTree: true,
+        rootID: rootID,
+        expandOnHover: 700,
+        startCollapsed: false
+    });
+
+
+
+    $('#menu-save').on('click', function(event) {
+       event.preventDefault();
+        var data = {'order': $('.sortable').nestedSortable("toArray")};
+        $.ajax({
+            'url': updateOrderLink,
+            type: 'POST',
+            data: data,
+            dataType: 'json',
+        });
+    });
+
+    $('.disclose').attr('title', 'Click to show/hide children');
+    $('.disclose').on('click', function () {
+        $(this).closest('li').toggleClass('mjs-nestedSortable-collapsed').toggleClass('mjs-nestedSortable-expanded');
+        $(this).toggleClass('ui-icon-plusthick').toggleClass('ui-icon-minusthick');
+    });
+});

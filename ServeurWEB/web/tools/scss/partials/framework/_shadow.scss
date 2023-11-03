@@ -1,0 +1,7 @@
+@for $i from 0 through 5 {
+  .bxsh-#{$i} {box-shadow: 0 $shadow*$i $shadow*$i*2 0 rgba(0,0,0,0.20),0 $shadow*$i $shadow*$i*3 0 rgba(0,0,0,0.21);}
+}
+
+@mixin bxsh($taille: 1) {
+  box-shadow: 0 #{$taille}px #{$taille*2}px 0 rgba(0,0,0,0.20),0 #{$taille}px #{$taille*3}px 0 rgba(0,0,0,0.21);
+}

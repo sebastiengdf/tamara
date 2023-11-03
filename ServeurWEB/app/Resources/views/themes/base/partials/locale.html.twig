@@ -1,0 +1,19 @@
+<span class="locale_switcher navbar-brand">
+    {% spaceless %}
+        {% if localSwitcherPage is defined %} {#Page#}
+            {{ localeSwitcher('page', object)|raw }}
+        {% endif %}
+
+        {% if localSwitcherPost is defined %} {#Post#}
+            {{ localeSwitcher('post', {'object': object, 'type': type})|raw }}
+        {% endif %}
+
+        {% if localSwitcherTaxo is defined %} {#Taxo#}
+            {{ localeSwitcher('taxo', {'object': object, 'type': type})|raw }}
+        {% endif %}
+
+        {% if localSwitcherList is defined %} {#Taxo#}
+            {{ localeSwitcher('list', {'type': type})|raw }}
+        {% endif %}
+    {% endspaceless %}
+</span>

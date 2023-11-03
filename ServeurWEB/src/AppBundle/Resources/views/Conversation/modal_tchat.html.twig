@@ -1,0 +1,231 @@
+
+{{ include(':admin:historique_modal.html.twig') }}
+
+<button type="button" id="messenger" class="btn btn-danger  btn-circle btn-lg sticky" data-toggle="modal"
+        data-target=".bd-example-modal-lg">
+    <i class="fa fa-envelope" aria-hidden="true"></i>
+</button>
+
+<div class="modal fade bd-example-modal-lg"
+     id="modal-tchat"
+     data-modaltchat="{{ app.request.get('modal') }}"
+     data-url-conversation='{{ path('conversation',{'id' : app.request.get('id')}) }}'
+     data-url-message='{{ path('message',{'id' : app.request.get('id')}) }}'
+     data-modalconversation="{{ app.request.get('idConversation') }}"
+     tabindex="-1" role="dialog"
+     aria-labelledby="myLargeModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="container-fluid">
+                <h3 id="modal-title" class=" text-center">   <div class=" text-center" id="chargement_conversation">
+                        <div class="loader"></div>
+                    </div></h3>
+
+                <button class=" new_conversation msg_send_btn pull-right mr-2" type="button"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+
+                <div class="messaging" >
+
+                    <div class="inbox_msg">
+                        <div class="inbox_people">
+                            <div class="headind_srch">
+                                <div class="recent_heading">
+                                    <h4>Recent</h4>
+                                </div>
+                         {#       <div class="srch_bar" >
+                                    <div class="stylish-input-group">
+                                        <span class="input-group-addon">
+                                            <input type="text"
+
+                                                   class="search-bar"
+                                                   placeholder="Search">
+                                            #}{#
+                                            <button type="button"> <i class="fa fa-search"
+                                                                      aria-hidden="true"></i> </button>#}{#
+                                        </span>
+                                    </div>
+                                </div>#}
+                            </div>
+                            <div class="inbox_chat">
+                                {% include '@App/Conversation/conversation.html.twig' %}
+                            </div>
+
+                        </div>
+
+                        <div class="mesgs mt-0 ">
+
+                            <div class="message">
+
+                                {% include '@App/Conversation/message.html.twig' %}
+                            </div>
+
+                            <div class="type_msg">
+                                <div class="input_msg_write">
+                                    <input type="text" id='message' class="write_msg "
+                                           placeholder="Saisissez un message ..."/>
+                                    <button class="msg_send_btn" id="send_btn" type="button"><i
+                                                class="fa fa-paper-plane-o"
+                                                aria-hidden="true"></i></button>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $(document).on('submit', '#send_new', function(e){
+            // il est impératif de commencer avec cette méthode qui va empêcher le navigateur d'envoyer le formulaire lui-même
+            e.preventDefault();
+            console.log("form send_new");
+            $form = $(e.target);
+            modal = $('#exampleModal');
+
+            var $submitButton = $form.find(':submit');
+            $submitButton.html('<i class="fas fa-spinner fa-pulse"></i>');
+
+            var url = '{{ path('new_conversation',{'id' : app.request.get('id')}) }}';
+
+            $.ajax({
+                type : 'POST',
+                url:url,
+                data:$form.serialize(),
+                success: function (data) {
+                    loadConversationMessage();
+
+                }
+            });
+        });
+
+        // ouvre modal conversation
+        $('.sticky').click(function () {
+
+
+            loadConversationMessage();
+
+
+        });
+
+        function loadConversationMessage(){
+
+            var url = '{{ path('conversation',{'id' : app.request.get('id')}) }}';
+            var urlmessage = '{{ path('message',{'id' : app.request.get('id')}) }}';
+
+            $('.type_msg').hide();
+
+            $.ajax({
+                type: 'post',
+                url: url,
+                success: function (data) {
+
+                    jQuery('#chargement_conversation')
+                        .hide() // cache la division au départ
+                        .ajaxStart(function () {
+                            $(this).show();
+                        })
+                        .ajaxStop(function () {
+                            $(this).hide();
+                        });
+                    $('.inbox_chat').html(data);
+
+                    $('#dataModal').modal("show");
+
+                    var idConversation = $('#modal-tchat').data('modalconversation');
+
+                    if (idConversation === "") {
+                        idConversation = $(".inbox_chat .chat_list").last().attr('id')
+                    }
+                    $("#" + idConversation).addClass("active_chat");
+
+                    $.ajax({
+                        type: 'post',
+                        data: {"lastid": idConversation},
+                        url: urlmessage,
+                        success: function (data) {
+
+                            $('.message').html(data);
+                            $('#modal-title').html("Messagerie");
+
+                            $('#modal-title').fadeIn(800);
+                            $('.message').hide();
+                            $('.message').fadeIn(800);
+                            $('.type_msg').fadeIn(500);
+
+                            /*
+                                                        $(".inbox_chat .chat_list").last().addClass("active_chat");
+                            */
+                            $('.msg_history').scrollTop($('.msg_history')[0].scrollHeight);
+
+                            if (!$(".inbox_chat .chat_list.active_chat").attr('id')) {
+                                $('.new_conversation').trigger('click');
+
+                            }
+                        }
+                    });
+
+                }
+            });
+
+        }
+        // créer une nouvelle conversation
+        $('.new_conversation').click(function () {
+            $('#modal-title').html("Nouvelle conversation");
+            $('.type_msg').hide();
+            $(".inbox_chat .chat_list.active_chat").removeClass("active_chat");
+
+            var url = '{{ path('new_conversation',{'id' : app.request.get('id')}) }}';
+
+            $.ajax({
+                type: 'post',
+                url: url,
+                success: function (data) {
+                    $('.message').html(data);
+                    $('#dataModal').modal("show");
+                }
+            });
+
+
+        });
+
+        // si clique sur notif redirige et ouvre le modal
+        var modal = $('#modal-tchat').data('modaltchat');
+        if (modal == 1) {
+            $(".sticky").trigger("click");
+        }
+
+        // envoie un message aux utilisateurs
+        $('#send_btn').click(function () {
+            $('#modal-title').html("Nouvelle conversation");
+            var url = '{{ path('update_conversation',{'id' : app.request.get('id')}) }}';
+
+            if ($('.write_msg').val() != "") {
+
+                $.ajax({
+                    type: 'post',
+                    data: {'msg': $('.write_msg').val(), "conversation": $('.conversation').data('conversation')},
+                    url: url,
+
+                    success: function (data) {
+                        $('.message').html(data);
+                        $('#message').val("");
+                        $('.msg_history').scrollTop($('.msg_history')[0].scrollHeight);
+                    }
+                });
+            }
+        });
+
+
+    });
+</script>

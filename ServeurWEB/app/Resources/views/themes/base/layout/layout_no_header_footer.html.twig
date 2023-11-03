@@ -1,0 +1,13 @@
+{% set configCms = getConfigCms() %} {# init config #}
+{% set rootPath = ":" ~ constant("CmsBundle\\Util\\TemplateHierarchy::FOLDER_THEMES") ~ "/" ~ configCms.theme %}
+{% extends rootPath ~ ':index.html.twig' %}
+
+{% block header %}{% endblock %}
+
+{% block layout %}
+    <div id="{% block content_id %}{% endblock %}" class="container">
+        {% block content %}{% endblock content %}
+    </div>
+{% endblock layout %}
+
+{% block footer %}{% endblock %}

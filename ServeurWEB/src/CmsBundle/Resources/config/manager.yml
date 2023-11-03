@@ -1,0 +1,65 @@
+services:
+
+    cms.manager.page:
+        class: CmsBundle\Manager\PageManager
+        arguments: ['@doctrine.orm.entity_manager']
+        calls:
+            - [setRepository, [ 'CmsBundle:Page' ]]
+
+    cms.manager.bloc:
+        class: CmsBundle\Manager\BlocManager
+        arguments: ['@doctrine.orm.entity_manager']
+        calls:
+            - [setRepository, [ 'CmsBundle:Bloc' ]]
+
+    cms.manager.menu:
+        class: CmsBundle\Manager\MenuManager
+        arguments: [ '@doctrine.orm.entity_manager' ]
+        calls:
+            - [setRepository, [ 'CmsBundle:Menu' ]]
+
+    cms.manager.list_seo:
+        class: CmsBundle\Manager\ListSeoManager
+        arguments: [ '@doctrine.orm.entity_manager' ]
+        calls:
+            - [setRepository, [ 'CmsBundle:ListSeo' ]]
+
+    cpt.article:
+        class: CmsBundle\Manager\ArticleManager
+        arguments: [ '@doctrine.orm.entity_manager' ]
+        calls:
+            - [setRepository, [ 'CmsBundle:Article' ]]
+
+    taxo.category:
+        class: CmsBundle\Manager\CategoryManager
+        arguments: [ '@doctrine.orm.entity_manager' ]
+        calls:
+            - [setRepository, [ 'CmsBundle:Category' ]]
+
+    taxo.tag:
+        class: CmsBundle\Manager\TagManager
+        arguments: [ '@doctrine.orm.entity_manager' ]
+        calls:
+            - [setRepository, [ 'CmsBundle:Tag' ]]
+
+    cms.manager.link:
+        class: CmsBundle\Manager\LinkManager
+        arguments:
+            - '@doctrine.orm.entity_manager'
+            - '@router'
+            - '@service_container'
+        calls:
+            - [setRepository, [ 'CmsBundle:Link' ]]
+
+
+    cpt.item:
+        class: CmsBundle\Manager\ItemManager
+        arguments: ['@doctrine.orm.entity_manager']
+        calls:
+            - [setRepository, [ 'CmsBundle:Item' ]]
+
+    cms.manager.collection:
+        class: CmsBundle\Manager\CollectionManager
+        arguments: ['@doctrine.orm.entity_manager']
+        calls:
+            - [setRepository, [ 'CmsBundle:Collection' ]]

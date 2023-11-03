@@ -1,0 +1,45 @@
+{% extends 'SonataAdminBundle::standard_layout.html.twig' %}
+{% set config = getConfig() %} {# init config #}
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        .content-wrapper, .right-side, .main-footer {
+            margin-left: 0;
+        }
+
+        .skin-black .wrapper, .skin-black .main-sidebar, .skin-black .left-side {
+            background-color: #ECF0F5;
+        }
+
+        .login-logo {
+            margin-bottom: 10px;
+        }
+
+        .login-logo img {
+            margin-right: 20px;
+            margin-top: -5px;
+        }
+    </style>
+{% endblock %}
+
+{% block sonata_left_side %}{% endblock %}
+{% block sonata_header %}{% endblock %}
+{% block sonata_page_content %}
+
+
+    <div class="login-box">
+        <div class="login-logo">
+            <img src="{{ asset('favicon.ico') }}" alt="{{ config.name }}"><a href="{{ path('sonata_admin_dashboard') }}">{{ config.name }}</a>
+        </div>
+        <!-- /.login-logo -->
+
+        <div class="login-box-body">
+            <p class="login-box-msg">Identification</p>
+            {% block fos_user_content %}
+            {% endblock %}
+
+        </div>
+        <!-- /.login-box-body -->
+    </div>
+
+{% endblock %}

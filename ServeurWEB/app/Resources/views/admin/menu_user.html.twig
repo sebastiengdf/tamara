@@ -1,0 +1,23 @@
+<!-- User Account: style can be found in dropdown.less -->
+<li class="dropdown user user-menu">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+		{% if app.user == 'Anne-Michelle BANNWARTH' %}
+			{% set couleurAnne = "style=color:pink" %}
+		{% else %}
+			{% set couleurAnne = "" %}
+		{% endif %}
+        <i class="fa fa-user" {{ couleurAnne }}></i>
+        <span class="hidden-xs" {{ couleurAnne }}>{{ app.user }}</span>
+    </a>
+    <ul class="dropdown-menu">
+        <!-- Menu Footer-->
+        <li class="user-footer">
+            <div class="pull-left">
+                <a href="{{ path('admin_user_user_edit', {'id' : app.user.id}) }}" class="btn btn-default btn-flat">Profil</a>
+            </div>
+            <div class="pull-right">
+                <a href="{{ path('fos_user_security_logout') }}" class="btn btn-default btn-flat">Deconnexion</a>
+            </div>
+        </li>
+    </ul>
+</li>

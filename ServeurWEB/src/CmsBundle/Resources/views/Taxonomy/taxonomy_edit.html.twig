@@ -1,0 +1,125 @@
+{% extends ':admin:base_edit.html.twig' %}
+
+
+{% block stylesheets %}
+    {{ parent() }}
+    {% include '@Cms/Cms/codemirror_css.html.twig' %}
+{% endblock stylesheets %}
+
+{% block top_result %}
+    {% if object.id is not null %}
+        {% set locale = (app.request.query.get('tl') is not null) ? app.request.query.get('tl') : locale %}
+        {% if object.slug %}
+            <ul class="nav navbar-nav hidden-xs">
+                <li>
+                    <a class="bg-green" target="_blank" href="{{ path('cms_taxo_show', {'_locale': locale, 'type': object.type, 'slug': object.slug}) }}">
+                        <i class="fa fa-eye"></i>&nbsp;Voir
+                    </a>
+                </li>
+            </ul>
+        {% endif %}
+    {% endif %}
+{% endblock top_result %}
+
+{% block form %}
+    {% include '@Core/admin/form_start.html.twig' %}
+
+    <div class="row">
+        {% block taxonomy_edit_top %}{% endblock taxonomy_edit_top %}
+        <div class="col-md-3">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Général</h3>
+                    <div class="box-tools pull-right">
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="box-body">
+                    {% block taxonomy_edit_identification %}
+                        {{ form_row(form.name) }}
+                        {{ form_row(form.published) }}
+                        {{ form_row(form.noIndex) }}
+                    {% endblock taxonomy_edit_identification %}
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Date</h3>
+                    <div class="box-tools pull-right">
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="box-body">
+                    {% block taxonomy_edit_date %}
+                        {{ form_row(form.created) }}
+                        {{ form_row(form.updated) }}
+                        {{ form_row(form.publishedStart) }}
+                        {{ form_row(form.publishedEnd) }}
+
+                    {% endblock taxonomy_edit_date %}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Accès</h3>
+                    <div class="box-tools pull-right">
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="box-body">
+                    {% block taxonomy_edit_acces %}
+                        {{ form_row(form.privateAccess) }}
+                        {{ form_row(form.allowedGroups) }}
+                    {% endblock taxonomy_edit_acces %}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Cache</h3>
+                    <div class="box-tools pull-right">
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="box-body">
+                    {% block taxonomy_edit_cache %}
+                        {{ form_row(form.cache) }}
+                        {{ form_row(form.cacheTime) }}
+                    {% endblock taxonomy_edit_cache %}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            {% include '@Cms/Cms/edit_seo.html.twig' %}
+        </div>
+
+        <div class="col-md-8">
+            {% include '@Cms/Cms/edit_content.html.twig' %}
+        </div>
+        <div class="col-md-4">
+            {% include '@Cms/Cms/edit_cover.html.twig' %}
+            {% include '@Cms/Cms/edit_asset.html.twig' %}
+        </div>
+
+
+        {% block taxonomy_edit_bottom %}{% endblock taxonomy_edit_bottom %}
+
+    </div>
+
+    {% include '@Core/admin/form_end.html.twig' %}
+{% endblock form %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {% include '@Cms/Cms/codemirror_js.html.twig' %}
+{% endblock javascripts %}

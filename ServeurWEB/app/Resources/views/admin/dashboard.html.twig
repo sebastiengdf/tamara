@@ -1,0 +1,305 @@
+
+{%  extends '@SonataAdmin/Core/dashboard.html.twig' %}
+{% block stylesheets %}
+	{{ parent() }}
+	<link rel="stylesheet" href="{{ asset('assets/css/stylecustom.css') }}" />
+{% endblock %}
+{% block content %}
+
+{# 4 BOUTONS #}
+<div class="row">
+    {%  if securityAsGrantedAcces('ROLE_APP_ADMIN_FACTUREALL_ALL') %} 
+ 		<a href="{{ path('admin_app_factureall_list') }}">
+		  
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-whitecust">
+            <div class="inner">
+              <h3>{{ getNbFacture() }}</h3>
+
+              <p class="textinboxthin">Toutes les Factures</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-bag"></i>
+            </div>
+          </div>
+        </div>
+        </a>
+       {% endif %}  
+        {%  if securityAsGrantedAcces(' ') %}
+        <!-- ./col -->
+        <a href="{{ path('admin_app_factureapayer_list') }}">
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-whitecust">
+            <div class="inner">
+              <h3>{{ getNbFactureValide() }}</h3>
+
+              <p class="textinboxthin">Validées</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-stats-bars"></i>
+            </div>
+          </div>
+        </div>
+        </a>
+        {% endif %}
+        {%  if securityAsGrantedAcces('ROLE_APP_ADMIN_FACTUREPAYE_ALL') %}
+        <!-- ./col -->
+        <a href="{{ path('admin_app_facturepaye_list') }}">
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-whitecust">
+            <div class="inner">
+              <h3>{{ getNbFacturePaye() }}</h3>
+
+              <p class="textinboxthin">Payées</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-pie-graph"></i>
+            </div>
+          </div>
+        </div>
+        </a>
+         {% endif %}
+        <!-- ./col -->
+        {%  if securityAsGrantedAcces(' ') %}
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-whitecust">
+            <div class="inner">
+              <h3>{{ getNbFournisseur() }}</h3>
+
+              <p class="textinboxthin">Fournisseurs</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-person-add"></i>
+            </div>
+          </div>
+        </div>
+        {% endif %}
+		{%  if securityAsGrantedAcces('ROLE_APP_ADMIN_FACTUREENERREUR_ALL') %}
+        <!-- ./col -->
+         <a href="{{ path('admin_app_factureenerreur_list') }}">
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-whitecust">
+            <div class="inner">
+              <h3>{{ getNbEnErreur() }}</h3>
+              <p class="textinboxthin">Toutes les factures en erreur</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-bug"></i>
+            </div>
+          </div>
+        </div>
+        </a>
+        {% endif %}
+        <!-- ./col -->
+        {%  if securityAsGrantedAcces('ROLE_APP_ADMIN_FACTUREAAFFECTER_ALL') %}
+         <a href="{{ path('admin_app_factureaaffecter_list') }}">
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-whitecust">
+            <div class="inner">
+              <h3>{{ getNbaAffecter() }}</h3>
+
+              <p class="textinboxthin">Toutes les factures à affecter</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-man"></i>
+            </div>
+          </div>
+        </div>
+        </a>
+        {% endif %}
+        <!-- ./col -->  
+         {%  if securityAsGrantedAcces('ROLE_APP_ADMIN_FACTUREAAPPROUVERALL_ALL') %}
+		<a href="{{ path('admin_app_factureaapprouverall_list') }}">   
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-whitecust">
+            <div class="inner">
+              <h3>{{ getNbaApprouverAll() }}</h3>
+
+              <p class="textinboxthin">Toutes les factures à approuver</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-thumbsup"></i>
+            </div>
+          </div>
+        </div>
+        </a>
+        {% endif %}
+        <!-- ./col -->
+       {%  if securityAsGrantedAcces('ROLE_APP_ADMIN_FACTUREASAISIRALL_ALL') %}
+		<a href="{{ path('admin_app_factureasaisirall_list') }}">   
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-whitecust">
+            <div class="inner">
+              <h3>{{ getNbasaisirAll() }}</h3>
+
+              <p class="textinboxthin">Toutes les factures à gérer</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-ios-plus"></i>
+            </div>
+          </div>
+        </div>
+        </a>
+        {% endif %}
+        
+        
+        
+        {%  if securityAsGrantedAcces('ROLE_APP_ADMIN_FACTUREASAISIRALL_ALL') %}
+		<a href="{{ path('admin_app_factureagererall_list') }}">   
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-whitecust">
+            <div class="inner">
+              <h3>{{ getNbagererAll() }}</h3>
+
+              <p class="textinboxthin">Toutes les factures à saisir</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-ios-plus"></i>
+            </div>
+          </div>
+        </div>
+        </a>
+        {% endif %}
+        
+        
+        {%  if securityAsGrantedAcces('ROLE_APP_ADMIN_FACTUREASAISIRALL_ALL') %}
+		<a href="{{ path('admin_app_factureenlitigeall_list') }}">   
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-whitecust">
+            <div class="inner">
+              <h3>{{ getNbenlitigeAll() }}</h3>
+
+              <p class="textinboxthin">Toutes les factures en litige</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-ios-plus"></i>
+            </div>
+          </div>
+        </div>
+        </a>
+        {% endif %}
+        <!-- ./col -->
+    {%  if securityAsGrantedAcces('ROLE_APP_ADMIN_FACTUREATTENTEBCALL_ALL') %}
+        <a href="{{ path('admin_app_factureattentebcall_list') }}">
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-whitecust">
+            <div class="inner">
+              <h3>{{ getNbattentebcAll() }}</h3>
+
+              <p class="textinboxthin">Toutes les factures en attente de  BC</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-ios-pricetag"></i>
+            </div>
+          </div>
+        </div>
+        </a>
+        {% endif %}
+        <!-- ./col -->
+        {%  if securityAsGrantedAcces('ROLE_APP_ADMIN_FACTUREAVALIDER_ALL') %}
+        <a href="{{ path('admin_app_factureavalider_list') }}">
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-whitecust">
+            <div class="inner">
+              <h3>{{ getNbaValider() }}</h3>
+
+              <p class="textinboxthin">Factures à valider</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-person-add"></i>
+            </div>
+          </div>
+        </div>
+        </a>
+        {% endif %}
+        <!-- ./col -->
+        {%  if securityAsGrantedAcces('ROLE_APP_ADMIN_FACTUREAPAYER_ALL') %}
+        <a href="{{ path('admin_app_factureapayer_list') }}">
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-whitecust">
+            <div class="inner">
+              <h3>{{ getNbaPayer() }}</h3>
+
+              <p class="textinboxthin">Factures à payer</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-social-euro"></i>
+            </div>
+          </div>
+        </div>
+        </a>
+        {% endif %}
+        <!-- ./col -->
+       
+      </div>
+{# FIN 4 BOUTONS #}
+
+{%  if securityAsGrantedAcces('ROLE_APP_ADMIN_FACTUREASAISIR_ALL') %}
+{# Dernière factures ajoutés #}
+<div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">Dernières factures ajoutées</h3>
+
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+              </div>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <ul class="products-list product-list-in-box">
+              	
+				{% set listFacture = getFacture() %}
+              	{% for facture in listFacture %}
+              		<li class="item">
+	                  <div class="product-img">
+	                    <a href="{{ asset('uploads/media/') }}{{ facture.fichier }}" target="_blank"><img src="{{ asset('assets/img/pdf-ico.png') }}" alt="Fichier PDF"></a>
+	                  </div>
+	                  <div class="product-info">
+	                    <a href="{{ path('admin_app_factureall_show', { 'id': facture.id }) }}" class="product-title">
+	                    	{{ facture.name }} ( {{ facture.fournisseur }} )
+	                    	{% if facture.getNumSaisie is empty %}
+	                      		<span class="label label-info pull-right">Non Terminée</span>
+	                      	{% elseif facture.getCheckValide == false %}
+	                      		<span class="label label-warning pull-right">Non Validée</span>
+	                      	{% elseif facture.getCheckPaye == false %}
+	                      		<span class="label label-danger pull-right">Non Payée</span>
+	                      	{% else %}
+	                      		<span class="label label-success pull-right">Terminée</span></a>
+	                      	{% endif %}
+	                    </a>
+	                    <span class="product-description">
+	                    	<ul>
+	                    		{% set listComs = facture.commentaires %}
+          						{% for com in listComs %}
+		                    		<li><i>{{ com.created|date('d/m/Y') }}</i> - <b>{{ com.user }} : </b><div>{{ com.content|raw }}</div></li>
+	                    		{% endfor %}
+	                    	</ul>
+	                    </span>
+	                  </div>
+	                </li>
+				{% endfor %}
+               
+              </ul>
+            </div>
+            <!-- /.box-body -->
+            <!-- /.box-footer -->
+          </div>
+{# FIN Dernière factures ajoutés #}
+ {% endif %}
+
+{% endblock %}

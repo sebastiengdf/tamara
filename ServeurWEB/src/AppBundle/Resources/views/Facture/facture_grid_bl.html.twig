@@ -1,0 +1,23 @@
+{% extends 'SonataAdminBundle:CRUD:base_show_field.html.twig' %}
+
+{% block field %}
+	{% if not object.bonlivraisons.empty %}
+		<div class="col-xs-12">
+		<div class="box">
+			<!-- /.box-header -->
+			<div class="box-body table-responsive no-padding">
+				<table class="table table-hover">
+					<tbody>
+						<tr><th>Numéro</th><th>Fichier</th></tr>				
+						{% for releve in object.bonlivraisons %}
+							<tr><td>{{ releve.name }}</td><td><a href="{{ asset('uploads/media/') }}{{ releve.fichier }}" target="_blank">Télécharger</a></td></tr>
+						{% endfor %}
+					</tbody>
+				  </table>
+            </div>
+            <!-- /.box-body -->
+		</div>
+		</div>
+    {% endif %} 
+{% endblock %}
+
